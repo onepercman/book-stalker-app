@@ -11,6 +11,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'nativewind';
 import '../../global.css';
+import { Text } from 'react-native';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -49,13 +50,7 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(root)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="modal"
-          options={{
-            presentation: 'modal',
-          }}
-        />
+        <Stack.Screen name="index" options={{headerShown: false}}/>
       </Stack>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
     </ThemeProvider>
