@@ -1,10 +1,10 @@
-import { ScrollViewStyleReset } from 'expo-router/html';
-import React from 'react';
+import { ScrollViewStyleReset } from "expo-router/html"
+import React from "react"
 
 export default function Root({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head style={{ backgroundColor: '#F09458' }}>
+      <head style={{ backgroundColor: "#F09458" }}>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
@@ -41,5 +41,5 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
       <body>{children}</body>
     </html>
-  );
+  )
 }

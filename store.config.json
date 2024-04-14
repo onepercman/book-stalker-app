@@ -9,16 +9,7 @@
     "info": {
       "en-US": {
         "description": "Lorem ipsum dolor \n\nLorem ipsum dolor, Lorem ipsum dolor.",
-        "keywords": [
-          "some",
-          "keywords",
-          "of",
-          "your",
-          "choice",
-          "to",
-          "stand",
-          "out"
-        ],
+        "keywords": ["some", "keywords", "of", "your", "choice", "to", "stand", "out"],
         "releaseNotes": "Add some release note HERE",
         "marketingUrl": "https://expo-starter-kit.vercel.app/",
         "promoText": "Build universal apps with expo-router-starter-kit",
