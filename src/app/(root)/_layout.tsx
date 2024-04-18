@@ -1,10 +1,14 @@
-import { Button } from "@/components/ui/button"
-import { Stack } from "expo-router"
+import { Ionicons } from "@expo/vector-icons"
+import { Tabs } from "expo-router"
 
-export default function TabsLayout() {
+export default function () {
   return (
-    <Stack>
-      <Button>Hello</Button>
-    </Stack>
+    <Tabs>
+      <Tabs.Screen
+        name="home"
+        options={{ headerShown: false, tabBarIcon: ({ color }) => <Ionicons color={color} /> }}
+      />
+      <Tabs.Screen name="profile" options={{ headerShown: false }} />
+    </Tabs>
   )
 }
