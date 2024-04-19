@@ -14,11 +14,11 @@ export default function () {
       </View>
 
       <View className="flex flex-col gap-2">
-        <Button className="mt-4 min-w-[15rem]" onPress={() => push("/login")}>
+        <Button className="mt-4 min-w-[15rem]" onPress={() => push("/(auth)/login")}>
           <Text>Login</Text>
         </Button>
 
-        <Pressable onPress={() => push("/register")}>
+        <Pressable onPress={() => push("/(auth)/register")}>
           <Text>Don't have an account yet? Register</Text>
         </Pressable>
       </View>
