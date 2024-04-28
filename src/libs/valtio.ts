@@ -1,4 +1,4 @@
-import Storage from "expo-secure-store";
+import * as Storage from "expo-secure-store";
 import { proxy, subscribe, useSnapshot } from "valtio";
 import { omit, pick } from "./object";
 
