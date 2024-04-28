@@ -34,7 +34,6 @@ module.exports = {
         foregroundImage: "./public/android-chrome-192x192.png",
         backgroundColor: "#ffffff",
       },
-      // Add your custom intent filters here for Deep Linking
       intentFilters: [
         {
           action: "VIEW",
@@ -54,11 +53,20 @@ module.exports = {
       bundler: "metro",
       favicon: "./public/favicon-32x32.png",
     },
-    plugins: [["expo-router"]],
+    plugins: [
+      ["expo-router"],
+      [
+        "expo-secure-store",
+        {
+          faceIDPermission:
+            "Allow $(PRODUCT_NAME) to access your Face ID biometric data.",
+        },
+      ],
+    ],
     extra: {
       eas: {
         projectId: "c5cddb1a-4054-45f3-8212-36a4c9482807",
       },
     },
   },
-}
+};

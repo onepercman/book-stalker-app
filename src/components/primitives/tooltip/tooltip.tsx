@@ -1,14 +1,18 @@
-import { useControllableState, useRelativePosition, type LayoutPosition } from "@/components/primitives/hooks"
-import { Portal as RNPPortal } from "@/components/primitives/portal"
-import * as Slot from "@/components/primitives/slot"
+import {
+  useControllableState,
+  useRelativePosition,
+  type LayoutPosition,
+} from "@/components/primitives/hooks";
+import { Portal as RNPPortal } from "@/components/primitives/portal";
+import * as Slot from "@/components/primitives/slot";
 import type {
   PositionedContentProps,
   PressableRef,
   SlottablePressableProps,
   SlottableViewProps,
   ViewRef,
-} from "@/components/primitives/types"
-import * as React from "react"
+} from "@/components/primitives/types";
+import * as React from "react";
 import {
   BackHandler,
   Pressable,
@@ -16,18 +20,23 @@ import {
   type GestureResponderEvent,
   type LayoutChangeEvent,
   type LayoutRectangle,
-} from "react-native"
-import type { RootContext, TooltipOverlayProps, TooltipPortalProps, TooltipRootProps } from "./types"
+} from "react-native";
+import type {
+  RootContext,
+  TooltipOverlayProps,
+  TooltipPortalProps,
+  TooltipRootProps,
+} from "./types";
 
 interface IRootContext extends RootContext {
-  triggerPosition: LayoutPosition | null
-  setTriggerPosition: (triggerPosition: LayoutPosition | null) => void
-  contentLayout: LayoutRectangle | null
-  setContentLayout: (contentLayout: LayoutRectangle | null) => void
-  nativeID: string
+  triggerPosition: LayoutPosition | null;
+  setTriggerPosition: (triggerPosition: LayoutPosition | null) => void;
+  contentLayout: LayoutRectangle | null;
+  setContentLayout: (contentLayout: LayoutRectangle | null) => void;
+  nativeID: string;
 }
 
-const RootContext = React.createContext<IRootContext | null>(null)
+const RootContext = React.createContext<IRootContext | null>(null);
 
 const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
   (
@@ -43,17 +52,19 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
     },
     ref,
   ) => {
-    const nativeID = React.useId()
-    const [triggerPosition, setTriggerPosition] = React.useState<LayoutPosition | null>(null)
-    const [contentLayout, setContentLayout] = React.useState<LayoutRectangle | null>(null)
+    const nativeID = React.useId();
+    const [triggerPosition, setTriggerPosition] =
+      React.useState<LayoutPosition | null>(null);
+    const [contentLayout, setContentLayout] =
+      React.useState<LayoutRectangle | null>(null);
 
     const [open = false, onOpenChange] = useControllableState({
       prop: openProp,
       defaultProp: defaultOpen,
       onChange: onOpenChangeProp,
-    })
+    });
 
-    const Component = asChild ? Slot.View : View
+    const Component = asChild ? Slot.View : View;
     return (
       <RootContext.Provider
         value={{
@@ -68,47 +79,49 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
       >
         <Component ref={ref} {...viewProps} />
       </RootContext.Provider>
-    )
+    );
   },
-)
+);
 
-Root.displayName = "RootNativeTooltip"
+Root.displayName = "RootNativeTooltip";
 
 function useTooltipContext() {
-  const context = React.useContext(RootContext)
+  const context = React.useContext(RootContext);
   if (!context) {
-    throw new Error("Tooltip compound components cannot be rendered outside the Tooltip component")
+    throw new Error(
+      "Tooltip compound components cannot be rendered outside the Tooltip component",
+    );
   }
-  return context
+  return context;
 }
 
 const Trigger = React.forwardRef<PressableRef, SlottablePressableProps>(
   ({ asChild, onPress: onPressProp, disabled = false, ...props }, ref) => {
-    const triggerRef = React.useRef<View>(null)
-    const { open, onOpenChange, setTriggerPosition } = useTooltipContext()
+    const triggerRef = React.useRef<View>(null);
+    const { open, onOpenChange, setTriggerPosition } = useTooltipContext();
 
     React.useImperativeHandle(
       ref,
       () => {
         if (!triggerRef.current) {
-          return new View({})
+          return new View({});
         }
-        return triggerRef.current
+        return triggerRef.current;
       },
       [triggerRef.current],
-    )
+    );
 
     function onPress(ev: GestureResponderEvent) {
-      if (disabled) return
+      if (disabled) return;
       triggerRef.current?.measure((_x, _y, width, height, pageX, pageY) => {
-        setTriggerPosition({ width, pageX, pageY: pageY, height })
-      })
-      const newValue = !open
-      onOpenChange(newValue)
-      onPressProp?.(ev)
+        setTriggerPosition({ width, pageX, pageY: pageY, height });
+      });
+      const newValue = !open;
+      onOpenChange(newValue);
+      onPressProp?.(ev);
     }
 
-    const Component = asChild ? Slot.Pressable : Pressable
+    const Component = asChild ? Slot.Pressable : Pressable;
     return (
       <Component
         ref={triggerRef}
@@ -118,25 +131,25 @@ const Trigger = React.forwardRef<PressableRef, SlottablePressableProps>(
         disabled={disabled ?? undefined}
         {...props}
       />
-    )
+    );
   },
-)
+);
 
-Trigger.displayName = "TriggerNativeTooltip"
+Trigger.displayName = "TriggerNativeTooltip";
 
 /**
  * @warning when using a custom `<PortalHost />`, you might have to adjust the Content's sideOffset to account for nav elements like headers.
  */
 function Portal({ forceMount, hostName, children }: TooltipPortalProps) {
-  const value = useTooltipContext()
+  const value = useTooltipContext();
 
   if (!value.triggerPosition) {
-    return null
+    return null;
   }
 
   if (!forceMount) {
     if (!value.open) {
-      return null
+      return null;
     }
   }
 
@@ -144,39 +157,55 @@ function Portal({ forceMount, hostName, children }: TooltipPortalProps) {
     <RNPPortal hostName={hostName} name={`${value.nativeID}_portal`}>
       <RootContext.Provider value={value}>{children}</RootContext.Provider>
     </RNPPortal>
-  )
+  );
 }
 
-const Overlay = React.forwardRef<PressableRef, SlottablePressableProps & TooltipOverlayProps>(
-  ({ asChild, forceMount, onPress: OnPressProp, closeOnPress = true, ...props }, ref) => {
-    const { open, onOpenChange, setContentLayout, setTriggerPosition } = useTooltipContext()
+const Overlay = React.forwardRef<
+  PressableRef,
+  SlottablePressableProps & TooltipOverlayProps
+>(
+  (
+    {
+      asChild,
+      forceMount,
+      onPress: OnPressProp,
+      closeOnPress = true,
+      ...props
+    },
+    ref,
+  ) => {
+    const { open, onOpenChange, setContentLayout, setTriggerPosition } =
+      useTooltipContext();
 
     function onPress(ev: GestureResponderEvent) {
       if (closeOnPress) {
-        setTriggerPosition(null)
-        setContentLayout(null)
-        onOpenChange(false)
+        setTriggerPosition(null);
+        setContentLayout(null);
+        onOpenChange(false);
       }
-      OnPressProp?.(ev)
+      OnPressProp?.(ev);
     }
 
     if (!forceMount) {
       if (!open) {
-        return null
+        return null;
       }
     }
 
-    const Component = asChild ? Slot.Pressable : Pressable
-    return <Component ref={ref} onPress={onPress} {...props} />
+    const Component = asChild ? Slot.Pressable : Pressable;
+    return <Component ref={ref} onPress={onPress} {...props} />;
   },
-)
+);
 
-Overlay.displayName = "OverlayNativeTooltip"
+Overlay.displayName = "OverlayNativeTooltip";
 
 /**
  * @info `position`, `top`, `left`, and `maxWidth` style properties are controlled internally. Opt out of this behavior on native by setting `disablePositioningStyle` to `true`.
  */
-const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContentProps>(
+const Content = React.forwardRef<
+  ViewRef,
+  SlottableViewProps & PositionedContentProps
+>(
   (
     {
       asChild = false,
@@ -194,22 +223,32 @@ const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContent
     },
     ref,
   ) => {
-    const { open, onOpenChange, nativeID, contentLayout, setContentLayout, setTriggerPosition, triggerPosition } =
-      useTooltipContext()
+    const {
+      open,
+      onOpenChange,
+      nativeID,
+      contentLayout,
+      setContentLayout,
+      setTriggerPosition,
+      triggerPosition,
+    } = useTooltipContext();
 
     React.useEffect(() => {
-      const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-        setTriggerPosition(null)
-        setContentLayout(null)
-        onOpenChange(false)
-        return true
-      })
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        () => {
+          setTriggerPosition(null);
+          setContentLayout(null);
+          onOpenChange(false);
+          return true;
+        },
+      );
 
       return () => {
-        setContentLayout(null)
-        backHandler.remove()
-      }
-    }, [])
+        setContentLayout(null);
+        backHandler.remove();
+      };
+    }, []);
 
     const positionStyle = useRelativePosition({
       align,
@@ -221,20 +260,20 @@ const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContent
       sideOffset,
       side,
       disablePositioningStyle,
-    })
+    });
 
     function onLayout(event: LayoutChangeEvent) {
-      setContentLayout(event.nativeEvent.layout)
-      onLayoutProp?.(event)
+      setContentLayout(event.nativeEvent.layout);
+      onLayoutProp?.(event);
     }
 
     if (!forceMount) {
       if (!open) {
-        return null
+        return null;
       }
     }
 
-    const Component = asChild ? Slot.View : View
+    const Component = asChild ? Slot.View : View;
     return (
       <Component
         ref={ref}
@@ -246,14 +285,14 @@ const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContent
         onStartShouldSetResponder={onStartShouldSetResponder}
         {...props}
       />
-    )
+    );
   },
-)
+);
 
-Content.displayName = "ContentNativeTooltip"
+Content.displayName = "ContentNativeTooltip";
 
-export { Content, Overlay, Portal, Root, Trigger }
+export { Content, Overlay, Portal, Root, Trigger };
 
 function onStartShouldSetResponder() {
-  return true
+  return true;
 }

@@ -1,18 +1,26 @@
-import { useAugmentedRef, useControllableState } from "@/components/primitives/hooks"
-import * as Slot from "@/components/primitives/slot"
+import {
+  useAugmentedRef,
+  useControllableState,
+} from "@/components/primitives/hooks";
+import * as Slot from "@/components/primitives/slot";
 import type {
   PositionedContentProps,
   PressableRef,
   SlottablePressableProps,
   SlottableViewProps,
   ViewRef,
-} from "@/components/primitives/types"
-import * as Tooltip from "@radix-ui/react-tooltip"
-import * as React from "react"
-import { Pressable, View, type GestureResponderEvent } from "react-native"
-import type { RootContext, TooltipOverlayProps, TooltipPortalProps, TooltipRootProps } from "./types"
+} from "@/components/primitives/types";
+import * as Tooltip from "@radix-ui/react-tooltip";
+import * as React from "react";
+import { Pressable, View, type GestureResponderEvent } from "react-native";
+import type {
+  RootContext,
+  TooltipOverlayProps,
+  TooltipPortalProps,
+  TooltipRootProps,
+} from "./types";
 
-const RootContext = React.createContext<RootContext | null>(null)
+const RootContext = React.createContext<RootContext | null>(null);
 
 const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
   (
@@ -32,9 +40,9 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
       prop: openProp,
       defaultProp: defaultOpen,
       onChange: onOpenChangeProp,
-    })
+    });
 
-    const Component = asChild ? Slot.View : View
+    const Component = asChild ? Slot.View : View;
     return (
       <RootContext.Provider value={{ open, onOpenChange }}>
         <Tooltip.Provider
@@ -52,64 +60,82 @@ const Root = React.forwardRef<ViewRef, SlottableViewProps & TooltipRootProps>(
           </Tooltip.Root>
         </Tooltip.Provider>
       </RootContext.Provider>
-    )
+    );
   },
-)
+);
 
-Root.displayName = "RootWebTooltip"
+Root.displayName = "RootWebTooltip";
 
 function useTooltipContext() {
-  const context = React.useContext(RootContext)
+  const context = React.useContext(RootContext);
   if (!context) {
-    throw new Error("Tooltip compound components cannot be rendered outside the Tooltip component")
+    throw new Error(
+      "Tooltip compound components cannot be rendered outside the Tooltip component",
+    );
   }
-  return context
+  return context;
 }
 
 const Trigger = React.forwardRef<PressableRef, SlottablePressableProps>(
   ({ asChild, onPress: onPressProp, role: _role, disabled, ...props }, ref) => {
-    const augmentedRef = useAugmentedRef({ ref })
-    const { onOpenChange, open } = useTooltipContext()
+    const augmentedRef = useAugmentedRef({ ref });
+    const { onOpenChange, open } = useTooltipContext();
     function onPress(ev: GestureResponderEvent) {
       if (onPressProp) {
-        onPressProp(ev)
+        onPressProp(ev);
       }
-      onOpenChange(!open)
+      onOpenChange(!open);
     }
 
     React.useLayoutEffect(() => {
       if (augmentedRef.current) {
-        const augRef = augmentedRef.current as unknown as HTMLButtonElement
-        augRef.dataset.state = open ? "open" : "closed"
-        augRef.type = "button"
+        const augRef = augmentedRef.current as unknown as HTMLButtonElement;
+        augRef.dataset.state = open ? "open" : "closed";
+        augRef.type = "button";
       }
-    }, [open])
+    }, [open]);
 
-    const Component = asChild ? Slot.Pressable : Pressable
+    const Component = asChild ? Slot.Pressable : Pressable;
     return (
       <Tooltip.Trigger disabled={disabled ?? undefined} asChild>
-        <Component ref={augmentedRef} onPress={onPress} role="button" disabled={disabled} {...props} />
+        <Component
+          ref={augmentedRef}
+          onPress={onPress}
+          role="button"
+          disabled={disabled}
+          {...props}
+        />
       </Tooltip.Trigger>
-    )
+    );
   },
-)
+);
 
-Trigger.displayName = "TriggerWebTooltip"
+Trigger.displayName = "TriggerWebTooltip";
 
 function Portal({ forceMount, container, children }: TooltipPortalProps) {
-  return <Tooltip.Portal forceMount={forceMount} children={children} container={container} />
+  return (
+    <Tooltip.Portal
+      forceMount={forceMount}
+      children={children}
+      container={container}
+    />
+  );
 }
 
-const Overlay = React.forwardRef<PressableRef, SlottablePressableProps & TooltipOverlayProps>(
-  ({ asChild, forceMount, ...props }, ref) => {
-    const Component = asChild ? Slot.Pressable : Pressable
-    return <Component ref={ref} {...props} />
-  },
-)
+const Overlay = React.forwardRef<
+  PressableRef,
+  SlottablePressableProps & TooltipOverlayProps
+>(({ asChild, forceMount, ...props }, ref) => {
+  const Component = asChild ? Slot.Pressable : Pressable;
+  return <Component ref={ref} {...props} />;
+});
 
-Overlay.displayName = "OverlayWebTooltip"
+Overlay.displayName = "OverlayWebTooltip";
 
-const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContentProps>(
+const Content = React.forwardRef<
+  ViewRef,
+  SlottableViewProps & PositionedContentProps
+>(
   (
     {
       asChild = false,
@@ -131,7 +157,7 @@ const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContent
     },
     ref,
   ) => {
-    const Component = asChild ? Slot.View : View
+    const Component = asChild ? Slot.View : View;
     return (
       <Tooltip.Content
         onEscapeKeyDown={onEscapeKeyDown}
@@ -147,10 +173,10 @@ const Content = React.forwardRef<ViewRef, SlottableViewProps & PositionedContent
       >
         <Component ref={ref} {...props} />
       </Tooltip.Content>
-    )
+    );
   },
-)
+);
 
-Content.displayName = "ContentWebTooltip"
+Content.displayName = "ContentWebTooltip";
 
-export { Content, Overlay, Portal, Root, Trigger }
+export { Content, Overlay, Portal, Root, Trigger };

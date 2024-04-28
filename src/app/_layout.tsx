@@ -1,46 +1,50 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native"
-import { useFonts } from "expo-font"
-import { Stack } from "expo-router"
-import * as SplashScreen from "expo-splash-screen"
-import { StatusBar } from "expo-status-bar"
-import { useColorScheme } from "nativewind"
-import { useEffect } from "react"
-import "../../global.css"
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "nativewind";
+import { useEffect } from "react";
+import "../../global.css";
 
-export { ErrorBoundary } from "expo-router"
+export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
   initialRouteName: "index",
-}
+};
 
-SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
-  })
+  });
 
   useEffect(() => {
-    if (error) throw error
-  }, [error])
+    if (error) throw error;
+  }, [error]);
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync()
+      SplashScreen.hideAsync();
     }
-  }, [loaded])
+  }, [loaded]);
 
   if (!loaded) {
-    return null
+    return null;
   }
 
-  return <RootLayoutNav />
+  return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
-  const { colorScheme } = useColorScheme()
+  const { colorScheme } = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -51,5 +55,5 @@ function RootLayoutNav() {
       </Stack>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
     </ThemeProvider>
-  )
+  );
 }

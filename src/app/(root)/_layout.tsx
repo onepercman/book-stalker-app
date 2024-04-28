@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router"
+import { Tabs } from "expo-router";
 
 export default function () {
   return (
@@ -6,5 +6,5 @@ export default function () {
       <Tabs.Screen name="home" options={{ headerShown: false }} />
       <Tabs.Screen name="profile" options={{ headerShown: false }} />
     </Tabs>
-  )
+  );
 }
