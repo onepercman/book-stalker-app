@@ -1,49 +1,60 @@
 const { hairlineWidth } = require("nativewind/theme");
+const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
-  darkMode: "class",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: colors.gray[50],
+        input: colors.gray[200],
+        ring: colors.gray[100],
+        background: colors.white,
+        foreground: colors.gray[500],
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: colors.violet[500],
+          foreground: colors.violet[100],
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: colors.yellow[500],
+          foreground: colors.yellow[100],
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: colors.red[500],
+          foreground: colors.red[100],
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: colors.gray[300],
+          foreground: colors.gray[100],
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: colors.blue[500],
+          foreground: colors.blue[100],
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: colors.gray[500],
+          foreground: colors.gray[100],
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: colors.gray[500],
+          foreground: colors.gray[100],
         },
       },
       borderWidth: {
         hairline: hairlineWidth(),
+      },
+      borderRadius: {
+        DEFAULT: "8px",
       },
       keyframes: {
         "accordion-down": {

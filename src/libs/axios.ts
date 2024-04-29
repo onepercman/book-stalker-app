@@ -18,8 +18,6 @@ const requestHandler = {
 
 const responseHandler = {
   onFulfilled(response: AxiosResponse) {
-    response.statusText = "";
-    response.data = response.data.data;
     return Promise.resolve(response);
   },
   onRejected(error: AxiosError) {
