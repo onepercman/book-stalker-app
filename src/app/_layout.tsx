@@ -8,43 +8,43 @@ import { Image } from "react-native";
 import "../styles/globals.css";
 
 export default function () {
-  const { user } = useStore(userStore);
+	const { user } = useStore(userStore);
 
-  const router = useRouter();
+	const router = useRouter();
 
-  useEffect(() => {
-    if (user) {
-      router.replace("/(root)/profile");
-    } else {
-      router.replace("/");
-    }
-  }, [user]);
+	useEffect(() => {
+		if (user) {
+			router.replace("/(root)/profile");
+		} else {
+			router.replace("/");
+		}
+	}, [user]);
 
-  return (
-    <ToastProvider position="top">
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(auth)"
-          options={{
-            headerBackground: () => (
-              <Image source={Images.background} resizeMode="cover" />
-            ),
-            headerTitle: "",
-            headerBackVisible: false,
-          }}
-        />
-        <Stack.Screen
-          name="(root)"
-          options={{
-            headerBackground: () => (
-              <Image source={Images.background} resizeMode="cover" />
-            ),
-            headerTitle: "",
-            headerBackVisible: false,
-          }}
-        />
-      </Stack>
-    </ToastProvider>
-  );
+	return (
+		<ToastProvider position="top">
+			<Stack>
+				<Stack.Screen name="index" options={{ headerShown: false }} />
+				<Stack.Screen
+					name="(auth)"
+					options={{
+						headerBackground: () => (
+							<Image source={Images.background} resizeMode="cover" />
+						),
+						headerTitle: "",
+						headerBackVisible: false,
+					}}
+				/>
+				<Stack.Screen
+					name="(root)"
+					options={{
+						headerBackground: () => (
+							<Image source={Images.background} resizeMode="cover" />
+						),
+						headerTitle: "",
+						headerBackVisible: false,
+					}}
+				/>
+			</Stack>
+		</ToastProvider>
+	);
 }

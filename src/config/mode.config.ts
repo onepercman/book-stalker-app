@@ -1,8 +1,8 @@
 export enum Mode {
-  Local = "local",
-  Dev = "development",
-  Stg = "staging",
-  Prd = "production",
+	Local = "local",
+	Dev = "development",
+	Stg = "staging",
+	Prd = "production",
 }
 
 export const MODE: Mode = (process.env.MODE as Mode) || Mode.Dev;
