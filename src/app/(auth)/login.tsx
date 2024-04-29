@@ -1,10 +1,10 @@
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
+import { useToast } from "@/components/toast";
 import { userStore } from "@/stores/user.store";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { SafeAreaView, Text, View } from "react-native";
-import Toast from "react-native-toast-message";
 
 interface LoginDto {
   email: string;
@@ -12,19 +12,24 @@ interface LoginDto {
 }
 
 export default function () {
+  const { toast } = useToast();
   const router = useRouter();
 
   const form = useForm<LoginDto>({
     mode: "all",
+    defaultValues: {
+      email: "user@gmail.com",
+      password: "123456",
+    },
   });
 
   async function submit({ email, password }: LoginDto) {
     const succeed = await userStore.login(email, password);
     if (succeed) {
-      Toast.show({ type: "success", text1: "Login success" });
-      router.push("/home");
+      toast("Login success", "success");
+      router.push("/(root)/home");
     } else {
-      Toast.show({ type: "error", text1: "Login failed" });
+      toast("Login failed", "destructive");
     }
   }
 
@@ -44,9 +49,10 @@ export default function () {
           name="password"
           render={({ field }) => (
             <Input
-              className="w-full"
+              secureTextEntry
               textContentType="password"
               placeholder="Password"
+              className="w-full"
               {...field}
             />
           )}

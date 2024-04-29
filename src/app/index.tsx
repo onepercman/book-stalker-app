@@ -1,10 +1,10 @@
 import { Button } from "@/components/button";
-import { AntDesign } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, SafeAreaView, Text, View } from "react-native";
 
 export default function () {
-  const { push } = useRouter();
+  const router = useRouter();
 
   return (
     <SafeAreaView className="flex h-screen w-screen flex-col items-center justify-between">
@@ -13,15 +13,15 @@ export default function () {
         <Text>Simple stalking your reading process</Text>
         <Button
           className="mt-4 self-stretch"
-          onPress={() => push("/(auth)/login")}
-          rightIcon={<AntDesign name="login" />}
+          onPress={() => router.push("/(auth)/login")}
+          rightIcon={<Octicons name="arrow-right" />}
         >
           Login
         </Button>
       </View>
 
       <Pressable
-        onPress={() => push("/(auth)/register")}
+        onPress={() => router.push("/(auth)/register")}
         className="active:scale-125"
       >
         <Text>Don't have an account yet? Register</Text>

@@ -1,10 +1,21 @@
+import { Octicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
 export default function () {
   return (
-    <Tabs>
-      <Tabs.Screen name="home" options={{ headerShown: false }} />
-      <Tabs.Screen name="profile" options={{ headerShown: false }} />
+    <Tabs
+      initialRouteName="home"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen
+        name="home"
+        options={{
+          tabBarLabel: "Recent Reading",
+          tabBarIcon: () => <Octicons name="home" />,
+        }}
+      />
     </Tabs>
   );
 }

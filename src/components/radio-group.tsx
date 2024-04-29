@@ -1,4 +1,4 @@
-import { Circle, CircleDot } from "lucide-react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import { createContext, useContext, useState } from "react";
 import { Text, TouchableOpacity, useColorScheme } from "react-native";
 import { cn } from "../lib/utils";
@@ -55,9 +55,9 @@ function RadioGroupItem({
       {...props}
     >
       {selectedValue === value ? (
-        <CircleDot color={currentTheme.foreground} />
+        <FontAwesome name="dot-circle-o" color={currentTheme.foreground} />
       ) : (
-        <Circle color={currentTheme.foreground} />
+        <FontAwesome name="circle-o" color={currentTheme.foreground} />
       )}
       {label && (
         <Text className={cn("text-primary", labelClasses)}>{label}</Text>

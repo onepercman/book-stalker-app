@@ -32,9 +32,10 @@ const Input = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
     { className, label, labelClasses, inputClasses, variant, size, ...props },
     ref,
   ) => (
-    <View className={cn("flex flex-col gap-1.5", className)}>
+    <View className={cn("flex flex-col gap-1", className)}>
       {label && <Text className={cn("text-base", labelClasses)}>{label}</Text>}
       <TextInput
+        ref={ref}
         className={inputVariants({ variant, size, className: inputClasses })}
         {...props}
       />

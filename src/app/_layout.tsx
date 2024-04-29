@@ -1,11 +1,26 @@
-import { Stack } from "expo-router";
+import { ToastProvider } from "@/components/toast";
+import { useStore } from "@/libs/valtio";
+import { userStore } from "@/stores/user.store";
+import { Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
 import "../styles/globals.css";
 
-export default function App() {
+export default function () {
+  const { user } = useStore(userStore);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/(root)/home");
+  }, []);
+
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-    </Stack>
+    <ToastProvider position="top">
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="(root)" />
+      </Stack>
+    </ToastProvider>
   );
 }
