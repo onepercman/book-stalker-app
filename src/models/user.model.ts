@@ -32,4 +32,8 @@ export class UserModel {
 		this.user = undefined;
 		this.jwt = undefined;
 	}
+
+	getJwt() {
+		return this.jwt;
+	}
 }
