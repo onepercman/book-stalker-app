@@ -12,8 +12,8 @@ module.exports = {
     scheme: "acme",
     userInterfaceStyle: "automatic",
     splash: {
-      image: "./public/justlaunch.png",
-      resizeMode: "contain",
+      image: "./public/flash.png",
+      resizeMode: "cover",
       backgroundColor: "#000000",
     },
     updates: {

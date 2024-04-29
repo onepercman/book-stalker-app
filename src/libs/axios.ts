@@ -8,10 +8,6 @@ import axios, {
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
-    // const { jwt } = userStore;
-    // if (jwt && config.headers.Authorization) {
-    // 	config.headers.Authorization = `Bearer ${jwt}`;
-    // }
     return config;
   },
 };
@@ -22,9 +18,12 @@ const responseHandler = {
   },
   onRejected(error: AxiosError) {
     if (error.response?.data) {
+      const message = (error.response.data as any)["message"];
+      error.response.statusText = message;
       error.response.data = null;
+      return Promise.resolve(error.response);
     }
-    return Promise.resolve(error.response);
+    return Promise.resolve(null);
   },
 };
 

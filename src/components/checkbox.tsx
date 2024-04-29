@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 // TODO: make controlled (optional)
 interface CheckboxProps extends React.ComponentPropsWithoutRef<typeof View> {
@@ -31,7 +31,7 @@ function Checkbox({
           className={cn(
             "w-4 h-4 border border-gray-700 rounded bg-background flex justify-center items-center",
             {
-              "bg-foreground": isChecked,
+              "bg-content": isChecked,
             },
             checkboxClasses,
           )}

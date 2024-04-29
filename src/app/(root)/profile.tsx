@@ -1,9 +1,9 @@
 import { Button } from "@/components/button";
-import { Dialog, DialogTrigger } from "@/components/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
 import { useStore } from "@/libs/valtio";
 import { userStore } from "@/stores/user.store";
-import { Octicons } from "@expo/vector-icons";
+import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Image, SafeAreaView, Text, View } from "react-native";
 
 export default function () {
@@ -19,16 +19,16 @@ export default function () {
             source={{ uri: user.avatar }}
             className="h-24 w-24 bg-primary rounded"
           />
-          <View className="flex flex-col gap-2">
-            <Text className="text-lg font-medium">{user.name}</Text>
+          <View className="flex flex-col">
+            <Text className="text-3xl font-semibold">{user.name}</Text>
             <Text className="text-sm font-semibold text-muted">
               {user.email}
             </Text>
             <Button
               size="sm"
-              variant="destructive"
-              rightIcon={<Octicons name="arrow-right" />}
+              rightIcon={<AntDesign name="logout" />}
               onPress={() => userStore.logout()}
+              className="mt-2.5"
             >
               Logout
             </Button>
@@ -36,9 +36,33 @@ export default function () {
         </View>
         <Tabs defaultValue="1">
           <TabsList>
-            <TabsTrigger value="1" title="My eBooks" />
-            <TabsTrigger value="2" title="Recent Reading" />
-            <TabsTrigger value="3" title="Analytics" />
+            <TabsTrigger
+              value="1"
+              title={
+                <View className="flex flex-row gap-2">
+                  <Octicons name="rows" size={16} />
+                  <Text>My List</Text>
+                </View>
+              }
+            />
+            <TabsTrigger
+              value="2"
+              title={
+                <View className="flex flex-row gap-2">
+                  <Octicons name="history" size={16} />
+                  <Text>Recents</Text>
+                </View>
+              }
+            />
+            <TabsTrigger
+              value="3"
+              title={
+                <View className="flex flex-row gap-2">
+                  <Octicons name="project" size={16} />
+                  <Text>Analystic</Text>
+                </View>
+              }
+            />
           </TabsList>
 
           <TabsContent value="1">
@@ -60,6 +84,13 @@ export default function () {
               leftIcon={<Octicons name="upload" />}
             />
           </DialogTrigger>
+          <DialogContent>
+            {({ setOpen }) => (
+              <View>
+                <Text>Content</Text>
+              </View>
+            )}
+          </DialogContent>
         </Dialog>
       </View>
     </SafeAreaView>

@@ -1,6 +1,6 @@
 import { cloneElement, createContext, useContext, useState } from "react";
 import { Modal, TouchableOpacity, View } from "react-native";
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 interface DialogContextType {
   open: boolean;
@@ -30,7 +30,9 @@ function DialogContent({
   children,
 }: {
   className?: string;
-  children: React.ReactNode;
+  children?:
+    | React.ReactNode
+    | ((e: { setOpen(open: boolean): void }) => React.ReactNode);
 }) {
   const { open, setOpen } = useDialog();
 
@@ -48,12 +50,12 @@ function DialogContent({
         <View className="flex flex-1 justify-center items-center bg-black/75">
           <TouchableOpacity
             className={cn(
-              "border border-border bg-background rounded-lg p-6 shadow-lg",
+              "border border-line bg-background rounded-lg p-6 shadow-lg",
               className,
             )}
             activeOpacity={1}
           >
-            {children}
+            {typeof children === "function" ? children({ setOpen }) : children}
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

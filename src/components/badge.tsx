@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { Text, View } from "react-native";
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 const badgeVariants = cva(
   "flex flex-row items-center rounded-full px-2 py-1 text-xs font-semibold",
@@ -8,8 +8,6 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: "bg-primary",
-        secondary: "bg-secondary",
-        destructive: "bg-destructive",
         success: "bg-green-500 dark:bg-green-700",
       },
     },
@@ -22,9 +20,7 @@ const badgeVariants = cva(
 const badgeTextVariants = cva("font-medium text-center text-xs", {
   variants: {
     variant: {
-      default: "text-primary-foreground",
-      secondary: "text-secondary-foreground",
-      destructive: "text-destructive-foreground",
+      default: "text-primary-600",
       success: "text-green-100",
     },
   },

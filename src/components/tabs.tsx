@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 interface TabsContextProps {
   activeTab: string;
@@ -36,7 +36,7 @@ function TabsList({
 interface TabsTriggerProps
   extends React.ComponentPropsWithoutRef<typeof TouchableOpacity> {
   value: string;
-  title: string;
+  title: React.ReactNode;
   textClasses?: string;
 }
 function TabsTrigger({
@@ -51,8 +51,8 @@ function TabsTrigger({
   return (
     <TouchableOpacity
       className={cn(
-        "px-4 py-2 border-b border-transparent",
-        activeTab === value && "border-primary",
+        "px-4 py-2 border-b-2 border-transparent text-xl transition-colors",
+        activeTab === value && "border-primary-700",
         className,
       )}
       onPress={() => setActiveTab(value)}

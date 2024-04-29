@@ -1,6 +1,10 @@
 const { hairlineWidth } = require("nativewind/theme");
 const colors = require("tailwindcss/colors");
 
+function palette(colors, name = 500) {
+  return { ...colors, DEFAULT: colors[name] };
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -16,41 +20,17 @@ module.exports = {
     },
     extend: {
       colors: {
+        primary: palette(colors.violet),
         content: colors.black,
-        default: colors.gray[100],
-        border: colors.gray[50],
-        input: colors.gray[200],
-        ring: colors.gray[100],
+        default: colors.gray[200],
+        line: colors.gray[200],
         background: colors.white,
-        foreground: colors.gray[500],
-        primary: {
-          DEFAULT: colors.violet[500],
-          foreground: colors.violet[100],
-        },
-        secondary: {
-          DEFAULT: colors.yellow[500],
-          foreground: colors.yellow[100],
-        },
-        destructive: {
-          DEFAULT: colors.red[500],
-          foreground: colors.red[100],
-        },
-        muted: {
-          DEFAULT: colors.gray[500],
-          foreground: colors.gray[600],
-        },
-        accent: {
-          DEFAULT: colors.blue[500],
-          foreground: colors.blue[100],
-        },
-        popover: {
-          DEFAULT: colors.gray[500],
-          foreground: colors.gray[100],
-        },
-        card: {
-          DEFAULT: colors.gray[500],
-          foreground: colors.gray[100],
-        },
+        component: colors.gray[100],
+        error: palette(colors.red),
+        success: palette(colors.green),
+        info: palette(colors.sky),
+        warning: palette(colors.amber),
+        muted: colors.gray[500],
       },
       borderWidth: {
         hairline: hairlineWidth(),

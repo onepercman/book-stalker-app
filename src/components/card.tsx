@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 function Card({
   className,
@@ -7,7 +7,7 @@ function Card({
 }: React.ComponentPropsWithoutRef<typeof View>) {
   return (
     <View
-      className={cn("rounded-xl border border-border", className)}
+      className={cn("rounded-xl border border-line", className)}
       {...props}
     />
   );
@@ -39,12 +39,7 @@ function CardDescription({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof View>) {
-  return (
-    <Text
-      className={cn("text-sm text-muted-foreground", className)}
-      {...props}
-    />
-  );
+  return <Text className={cn("text-sm -text-muted", className)} {...props} />;
 }
 
 function CardContent({
@@ -90,7 +85,7 @@ function SimpleCard({
           </Text>
         )}
         {description && (
-          <Text className="text-sm text-muted-foreground">{description}</Text>
+          <Text className="text-sm -text-muted">{description}</Text>
         )}
       </CardHeader>
       {content && (
@@ -100,7 +95,7 @@ function SimpleCard({
       )}
       {footer && (
         <CardFooter>
-          <Text className="text-sm text-muted-foreground">{footer}</Text>
+          <Text className="text-sm -text-muted">{footer}</Text>
         </CardFooter>
       )}
     </Card>

@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Animated, Text, View } from "react-native";
 
-import { cn } from "../lib/utils";
+import { cn } from "../libs/utils";
 
 const toastVariants = {
-  default: "bg-foreground",
-  destructive: "bg-destructive",
+  default: "bg-content",
   success: "bg-green-500",
   info: "bg-blue-500",
 };
@@ -174,4 +173,4 @@ function useToast() {
   return context;
 }
 
-export { ToastProvider, ToastVariant, Toast, toastVariants, useToast };
+export { Toast, ToastProvider, ToastVariant, toastVariants, useToast };
