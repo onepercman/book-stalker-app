@@ -1,22 +1,27 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
 
 export default function () {
   return (
     <SafeAreaView>
       <View>
-        <ScrollView contentContainerClassName="flex flex-col gap-4">
-          {Array(20)
+        <FlatList
+          className="grid grid-cols-2"
+          data={Array(20)
             .fill(0)
-            .map((_, index) => (
-              <View
-                className="flex flex-col items-center gap-2 rounded border border-muted"
-                key={index}
-              >
-                <View className="h-60 w-full bg-muted"></View>
-                <Text className="py-4 text-white">Dummy Book</Text>
-              </View>
-            ))}
-        </ScrollView>
+            .map((el) => ({
+              id: 1,
+              name: "Dummy",
+            }))}
+          renderItem={({ item }) => (
+            <View className="grow border">
+              <Text>
+                {item.id} - {item.name}
+              </Text>
+            </View>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={3}
+        />
       </View>
     </SafeAreaView>
   );

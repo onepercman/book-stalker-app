@@ -26,7 +26,6 @@ export default function () {
   async function submit({ email, password }: LoginDto) {
     const succeed = await userStore.login(email, password);
     if (succeed) {
-      toast("Login success", "success");
       router.push("/(root)/home");
     } else {
       toast("Login failed", "destructive");

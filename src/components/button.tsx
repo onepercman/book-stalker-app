@@ -8,7 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary",
+        default: "bg-default",
+        primary: "bg-primary",
         secondary: "bg-secondary",
         destructive: "bg-destructive",
         ghost: "bg-slate-700",
@@ -18,6 +19,9 @@ const buttonVariants = cva(
         default: "h-12 px-4",
         sm: "h-10 px-2",
         lg: "h-14 px-8",
+      },
+      square: {
+        true: "aspect-square",
       },
     },
     defaultVariants: {
@@ -30,7 +34,8 @@ const buttonVariants = cva(
 const buttonTextVariants = cva("text-center font-medium", {
   variants: {
     variant: {
-      default: "text-primary-foreground",
+      default: "text-content",
+      primary: "text-primary-foreground",
       secondary: "text-secondary-foreground",
       destructive: "text-destructive-foreground",
       ghost: "text-primary-foreground",
@@ -61,36 +66,43 @@ function Button({
   className,
   variant,
   size,
+  square,
   leftIcon,
   rightIcon,
   ...props
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, square, className }))}
       {...props}
     >
-      <Text
-        className={cn(
-          buttonTextVariants({ variant, size, className: labelClasses }),
-        )}
-      >
-        {leftIcon}
-      </Text>
-      <Text
-        className={cn(
-          buttonTextVariants({ variant, size, className: labelClasses }),
-        )}
-      >
-        {children}
-      </Text>
-      <Text
-        className={cn(
-          buttonTextVariants({ variant, size, className: labelClasses }),
-        )}
-      >
-        {rightIcon}
-      </Text>
+      {leftIcon ? (
+        <Text
+          className={cn(
+            buttonTextVariants({ variant, size, className: labelClasses }),
+          )}
+        >
+          {leftIcon}
+        </Text>
+      ) : null}
+      {children ? (
+        <Text
+          className={cn(
+            buttonTextVariants({ variant, size, className: labelClasses }),
+          )}
+        >
+          {children}
+        </Text>
+      ) : null}
+      {rightIcon ? (
+        <Text
+          className={cn(
+            buttonTextVariants({ variant, size, className: labelClasses }),
+          )}
+        >
+          {rightIcon}
+        </Text>
+      ) : null}
     </TouchableOpacity>
   );
 }

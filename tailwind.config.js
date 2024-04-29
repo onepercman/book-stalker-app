@@ -16,6 +16,8 @@ module.exports = {
     },
     extend: {
       colors: {
+        content: colors.black,
+        default: colors.gray[100],
         border: colors.gray[50],
         input: colors.gray[200],
         ring: colors.gray[100],
@@ -34,8 +36,8 @@ module.exports = {
           foreground: colors.red[100],
         },
         muted: {
-          DEFAULT: colors.gray[300],
-          foreground: colors.gray[100],
+          DEFAULT: colors.gray[500],
+          foreground: colors.gray[600],
         },
         accent: {
           DEFAULT: colors.blue[500],

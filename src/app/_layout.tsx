@@ -11,8 +11,12 @@ export default function () {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/(root)/home");
-  }, []);
+    if (user) {
+      router.replace("/(root)/profile");
+    } else {
+      router.replace("/");
+    }
+  }, [user]);
 
   return (
     <ToastProvider position="top">
