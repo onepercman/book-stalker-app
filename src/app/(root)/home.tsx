@@ -15,7 +15,7 @@ export default function () {
 		<SafeAreaView>
 			<View>
 				{data?.map((book) => (
-					<View>
+					<View key={book.id}>
 						<Text>{book.uri}</Text>
 					</View>
 				))}
