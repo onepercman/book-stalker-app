@@ -60,6 +60,16 @@ export default function () {
 								headerBackVisible: false,
 							}}
 						/>
+						<Stack.Screen
+							name="reading/[id]"
+							options={{
+								headerBackground: () => (
+									<Image source={Images.background} resizeMode="cover" />
+								),
+								headerTitle: "",
+								headerBackVisible: false,
+							}}
+						/>
 					</Stack>
 				</ToastProvider>
 			</QueryClientProvider>
