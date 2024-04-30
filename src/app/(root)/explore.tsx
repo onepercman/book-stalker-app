@@ -50,7 +50,9 @@ export default function () {
 									className="w-full h-40"
 								/>
 								<View className="p-2">
-									<Text className="text-center font-medium">{item.name}</Text>
+									<Text className="text-center font-medium line-clamp-1">
+										{item.name}
+									</Text>
 								</View>
 							</View>
 						</Pressable>

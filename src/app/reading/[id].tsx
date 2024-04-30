@@ -2,12 +2,10 @@ import { Service } from "@/services/app.service";
 import { Reader } from "@epubjs-react-native/core";
 import { useFileSystem } from "@epubjs-react-native/expo-file-system";
 import { useQuery } from "@tanstack/react-query";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native";
 
 export default function () {
-	const router = useRouter();
-
 	const { id } = useLocalSearchParams();
 
 	const { data } = useQuery({

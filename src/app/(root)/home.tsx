@@ -40,7 +40,7 @@ export default function () {
 						style={{ width: width }}
 						data={data}
 						width={width / 3}
-						height={190}
+						height={185}
 						renderItem={function ({ item }) {
 							return (
 								<Pressable
@@ -53,7 +53,7 @@ export default function () {
 											className="w-full h-40"
 										/>
 										<View className="p-2">
-											<Text className="text-center font-medium">
+											<Text className="text-center font-medium line-clamp-1">
 												{item.name}
 											</Text>
 										</View>
@@ -73,7 +73,7 @@ export default function () {
 						style={{ width: width }}
 						data={data}
 						width={width / 3}
-						height={190}
+						height={185}
 						renderItem={function ({ item }) {
 							return (
 								<Pressable
@@ -86,7 +86,7 @@ export default function () {
 											className="w-full h-40"
 										/>
 										<View className="p-2">
-											<Text className="text-center font-medium">
+											<Text className="text-center font-medium line-clamp-1">
 												{item.name}
 											</Text>
 										</View>
@@ -106,7 +106,7 @@ export default function () {
 						style={{ width: width }}
 						data={data}
 						width={width / 3}
-						height={190}
+						height={185}
 						renderItem={function ({ item }) {
 							return (
 								<Pressable
@@ -119,7 +119,7 @@ export default function () {
 											className="w-full h-40"
 										/>
 										<View className="p-2">
-											<Text className="text-center font-medium">
+											<Text className="text-center font-medium line-clamp-1">
 												{item.name}
 											</Text>
 										</View>
