@@ -1,6 +1,5 @@
-import { Button } from "@/components/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useStore } from "@/libs/valtio";
 import { userStore } from "@/stores/user.store";
 import { AntDesign, Octicons } from "@expo/vector-icons";
@@ -75,24 +74,9 @@ export default function () {
 						<Text>Analytics</Text>
 					</TabsContent>
 				</Tabs>
-
-				<Dialog>
-					<DialogTrigger>
-						<Button
-							square
-							className="absolute bottom-8 right-4"
-							leftIcon={<Octicons name="upload" />}
-						/>
-					</DialogTrigger>
-					<DialogContent>
-						{({ setOpen }) => (
-							<View>
-								<Text>Content</Text>
-							</View>
-						)}
-					</DialogContent>
-				</Dialog>
 			</View>
+
+			{/* <UploadBook /> */}
 		</SafeAreaView>
 	);
 }

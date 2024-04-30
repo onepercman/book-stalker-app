@@ -1,6 +1,6 @@
+import { cn } from "@/libs/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Text, View } from "react-native";
-import { cn } from "../libs/utils";
 
 const badgeVariants = cva(
 	"flex flex-row items-center rounded-full px-2 py-1 text-xs font-semibold",

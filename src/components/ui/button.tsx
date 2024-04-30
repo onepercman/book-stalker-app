@@ -1,7 +1,8 @@
+import { cn } from "@/libs/utils";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { cn } from "../libs/utils";
 
 const buttonVariants = cva(
 	"flex flex-row items-center justify-center rounded gap-1",
@@ -57,6 +58,7 @@ interface ButtonProps
 	labelClasses?: string;
 	leftIcon?: React.ReactNode;
 	rightIcon?: React.ReactNode;
+	loading?: boolean;
 }
 function Button({
 	children,
@@ -67,13 +69,27 @@ function Button({
 	square,
 	leftIcon,
 	rightIcon,
+	disabled,
+	loading,
 	...props
 }: ButtonProps) {
+	const _disabled = loading || disabled;
+
 	return (
 		<TouchableOpacity
 			className={cn(buttonVariants({ variant, size, square, className }))}
+			disabled={_disabled}
 			{...props}
 		>
+			{loading ? (
+				<Text
+					className={cn(
+						buttonTextVariants({ variant, size, className: labelClasses }),
+					)}
+				>
+					<FontAwesome5 name="spinner" />
+				</Text>
+			) : null}
 			{leftIcon ? (
 				<Text
 					className={cn(

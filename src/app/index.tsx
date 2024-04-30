@@ -1,5 +1,5 @@
 import { Images } from "@/assets";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import {

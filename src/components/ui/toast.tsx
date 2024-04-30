@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Animated, Text, View } from "react-native";
 
-import { cn } from "../libs/utils";
+import { cn } from "@/libs/utils";
 
 const toastVariants = {
 	default: "bg-content",

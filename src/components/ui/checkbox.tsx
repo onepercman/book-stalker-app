@@ -1,6 +1,6 @@
+import { cn } from "@/libs/utils";
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { cn } from "../libs/utils";
 
 // TODO: make controlled (optional)
 interface CheckboxProps extends React.ComponentPropsWithoutRef<typeof View> {

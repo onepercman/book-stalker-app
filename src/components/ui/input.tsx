@@ -1,8 +1,8 @@
+import { cn } from "@/libs/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { forwardRef } from "react";
 import { Text, TextInput, View } from "react-native";
 import colors from "tailwindcss/colors";
-import { cn } from "../libs/utils";
 
 const inputVariants = cva("border py-2.5 rounded", {
 	variants: {

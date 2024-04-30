@@ -1,6 +1,6 @@
+import { cn } from "@/libs/utils";
 import { cloneElement, createContext, useContext, useState } from "react";
 import { Modal, TouchableOpacity, View } from "react-native";
-import { cn } from "../libs/utils";
 
 interface DialogContextType {
 	open: boolean;

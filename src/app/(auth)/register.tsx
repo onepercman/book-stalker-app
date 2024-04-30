@@ -1,5 +1,5 @@
-import { Button } from "@/components/button";
-import { Input } from "@/components/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { userStore } from "@/stores/user.store";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
