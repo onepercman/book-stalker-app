@@ -62,13 +62,7 @@ export default function () {
 						/>
 						<Stack.Screen
 							name="reading/[id]"
-							options={{
-								headerBackground: () => (
-									<Image source={Images.background} resizeMode="cover" />
-								),
-								headerTitle: "",
-								headerBackVisible: false,
-							}}
+							options={{ headerShown: false }}
 						/>
 					</Stack>
 				</ToastProvider>

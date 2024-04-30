@@ -1,9 +1,8 @@
 import { Service } from "@/services/app.service";
-import { Reader } from "@epubjs-react-native/core";
+import { Reader, Themes } from "@epubjs-react-native/core";
 import { useFileSystem } from "@epubjs-react-native/expo-file-system";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
-import { SafeAreaView } from "react-native";
 
 export default function () {
 	const { id } = useLocalSearchParams();
@@ -19,8 +18,10 @@ export default function () {
 	if (!data) return;
 
 	return (
-		<SafeAreaView>
-			<Reader src={data.uri} fileSystem={useFileSystem} />
-		</SafeAreaView>
+		<Reader
+			src={data.uri}
+			fileSystem={useFileSystem}
+			defaultTheme={Themes.DARK}
+		/>
 	);
 }
