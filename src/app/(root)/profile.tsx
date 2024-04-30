@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useStore } from "@/libs/valtio";
 import { userStore } from "@/stores/user.store";
-import { AntDesign, Octicons } from "@expo/vector-icons";
+import { AntDesign, Entypo, Octicons } from "@expo/vector-icons";
 import { Image, SafeAreaView, Text, View } from "react-native";
 
 export default function () {
@@ -39,17 +39,8 @@ export default function () {
 							value="1"
 							title={
 								<View className="flex flex-row gap-2">
-									<Octicons name="rows" size={16} />
-									<Text>My List</Text>
-								</View>
-							}
-						/>
-						<TabsTrigger
-							value="2"
-							title={
-								<View className="flex flex-row gap-2">
-									<Octicons name="history" size={16} />
-									<Text>Recents</Text>
+									<Entypo name="heart" size={16} />
+									<Text>Favorites</Text>
 								</View>
 							}
 						/>
@@ -58,7 +49,7 @@ export default function () {
 							title={
 								<View className="flex flex-row gap-2">
 									<Octicons name="project" size={16} />
-									<Text>Analystic</Text>
+									<Text>Porfolio</Text>
 								</View>
 							}
 						/>

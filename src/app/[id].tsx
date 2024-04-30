@@ -13,7 +13,7 @@ export default function () {
 	const { data } = useQuery({
 		queryKey: ["book details", id],
 		async queryFn() {
-			const { data } = await Service.book.book(id as string);
+			const { data } = await Service.book.get(id as string);
 			return data;
 		},
 	});

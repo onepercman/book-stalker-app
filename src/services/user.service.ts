@@ -4,7 +4,7 @@ export class UserService {
 	register(data: { email: string; password: string }) {
 		return api.request<{ jwt: string; user: User }>({
 			method: "POST",
-			url: "/users/register",
+			url: "/user/register",
 			data,
 		});
 	}
@@ -12,7 +12,7 @@ export class UserService {
 	login(data: { email: string; password: string }) {
 		return api.request<{ jwt: string; user: User }>({
 			method: "POST",
-			url: "/users/login",
+			url: "/user/login",
 			data,
 		});
 	}
