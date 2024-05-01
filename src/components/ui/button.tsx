@@ -10,7 +10,8 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				default: "bg-default",
-				outline: "bg-transparent border border-primary",
+				outline: "bg-transparent border border-line",
+				outlinePrimary: "bg-transparent border border-primary",
 				primary: "bg-primary",
 				ghost: "bg-transparent",
 				link: "text-primary underline-offset-4",
@@ -36,6 +37,7 @@ const buttonTextVariants = cva("text-center font-medium", {
 		variant: {
 			default: "text-content",
 			outline: "text-white",
+			outlinePrimary: "text-white",
 			primary: "text-white",
 			ghost: "text-primary-600",
 			link: "text-primary-600 underline",

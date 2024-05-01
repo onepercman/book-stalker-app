@@ -22,7 +22,7 @@ export default function () {
 						Simple stalking your reading process
 					</Text>
 					<Button
-						variant="outline"
+						variant="outlinePrimary"
 						className="mt-4 self-stretch"
 						onPress={() => router.push("/(auth)/login")}
 						rightIcon={<Octicons name="arrow-right" />}

@@ -1,12 +1,23 @@
+import { BookCard } from "@/components/book-card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useStore } from "@/libs/valtio";
+import { Service } from "@/services/app.service";
 import { userStore } from "@/stores/user.store";
 import { AntDesign, Entypo, Octicons } from "@expo/vector-icons";
-import { Image, SafeAreaView, Text, View } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { FlatList, Image, SafeAreaView, Text, View } from "react-native";
 
 export default function () {
 	const { user } = useStore(userStore);
+
+	const { data: bookList } = useQuery({
+		queryKey: ["profile book list"],
+		async queryFn() {
+			const { data } = await Service.book.list();
+			return data;
+		},
+	});
 
 	if (!user) return;
 
@@ -56,13 +67,20 @@ export default function () {
 					</TabsList>
 
 					<TabsContent value="1">
-						<Text>My Ebook</Text>
-					</TabsContent>
-					<TabsContent value="2">
-						<Text>Recent Reading</Text>
+						{bookList ? (
+							<FlatList
+								className="h-full"
+								numColumns={3}
+								data={bookList}
+								keyExtractor={(e) => e._id}
+								renderItem={({ item }) => (
+									<BookCard data={item} className="w-1/3" />
+								)}
+							/>
+						) : null}
 					</TabsContent>
 					<TabsContent value="3">
-						<Text>Analytics</Text>
+						<Text>Porfolio</Text>
 					</TabsContent>
 				</Tabs>
 			</View>

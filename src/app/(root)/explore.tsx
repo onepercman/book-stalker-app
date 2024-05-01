@@ -1,21 +1,12 @@
+import { BookCard } from "@/components/book-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Service } from "@/services/app.service";
 import { Entypo } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "expo-router";
-import {
-	FlatList,
-	Image,
-	Pressable,
-	SafeAreaView,
-	Text,
-	View,
-} from "react-native";
+import { FlatList, SafeAreaView, View } from "react-native";
 
 export default function () {
-	const router = useRouter();
-
 	const { data } = useQuery({
 		queryKey: ["explore book list"],
 		async queryFn() {
@@ -38,26 +29,7 @@ export default function () {
 				numColumns={3}
 				data={data}
 				keyExtractor={(e) => e._id}
-				renderItem={function ({ item }) {
-					return (
-						<Pressable
-							className="p-2 w-1/3 h-52"
-							onPress={() => router.push(`/${item._id}`)}
-						>
-							<View className="border border-line bg-default h-full flex flex-col rounded-md overflow-hidden">
-								<Image
-									source={{ uri: item.thumbnail }}
-									className="w-full h-40"
-								/>
-								<View className="p-2">
-									<Text className="text-center font-medium line-clamp-1">
-										{item.name}
-									</Text>
-								</View>
-							</View>
-						</Pressable>
-					);
-				}}
+				renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
 			/>
 		</SafeAreaView>
 	);
