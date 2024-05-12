@@ -1,3 +1,3 @@
 export const Images = {
-	background: require("./imgs/flash.png"),
-};
+  background: require("./imgs/flash.png"),
+}

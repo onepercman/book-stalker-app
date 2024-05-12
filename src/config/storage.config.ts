@@ -1,3 +1,3 @@
 export const storageKeys = <const>{
-	user: "user",
-};
+  user: "user",
+}
