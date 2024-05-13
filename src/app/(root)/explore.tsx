@@ -20,7 +20,7 @@ export default function () {
   return (
     <SafeAreaView className="flex flex-col">
       <View className="flex flex-row gap-2 p-4">
-        <Input className="grow" placeholder="Search for books..." />
+        <Input className="grow" placeholder="Tìm kiếm sách..." />
         <Button leftIcon={<Entypo size={20} name="magnifying-glass" />} />
       </View>
 

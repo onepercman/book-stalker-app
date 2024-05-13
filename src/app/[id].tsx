@@ -30,8 +30,12 @@ export default function () {
           </View>
         </View>
         <View className="p-4">
-          <Button rightIcon={<Octicons name="book" />} onPress={() => router.push(`/reading/${data._id}`)}>
-            Read now
+          <Button
+            variant="primary"
+            rightIcon={<Octicons name="book" />}
+            onPress={() => router.replace(`/reading/${data._id}`)}
+          >
+            Đọc sách
           </Button>
         </View>
 

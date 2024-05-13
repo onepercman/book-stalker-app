@@ -22,43 +22,43 @@ export default function () {
     <SafeAreaView>
       <ScrollView>
         <View>
-          <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="clock" /> Đọc tiếp
+          <Text className="p-4 font-semibold">
+            <Entypo size={16} name="clock" /> Đọc tiếp
           </Text>
           <Carousel
             loop={false}
             style={{ width: width }}
             data={data}
             width={width / 3}
-            height={185}
+            height={200}
             renderItem={({ item }) => <BookCard data={item} />}
           />
         </View>
 
         <View>
-          <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="book" /> Sách mới
+          <Text className="p-4 font-semibold">
+            <Entypo size={16} name="book" /> Sách mới
           </Text>
           <Carousel
             loop={false}
             style={{ width: width }}
             data={data}
             width={width / 3}
-            height={185}
+            height={200}
             renderItem={({ item }) => <BookCard data={item} />}
           />
         </View>
 
         <View>
-          <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="star" /> Đã thích
+          <Text className="p-4 font-semibold">
+            <Entypo size={16} name="star" /> Đã thích
           </Text>
           <Carousel
             loop={false}
             style={{ width: width }}
             data={data}
             width={width / 3}
-            height={185}
+            height={200}
             renderItem={({ item }) => <BookCard data={item} />}
           />
         </View>

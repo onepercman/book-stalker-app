@@ -7,8 +7,8 @@ export const ProfileAvatar: FC = () => {
   const { user } = useStore(userStore)
 
   return (
-    <Pressable>
-      <Image source={{ uri: user?.avatar }} width={90} height={90} className="rounded bg-primary" />
+    <Pressable onPress={() => userStore.updateAvatar()}>
+      <Image source={{ uri: user?.avatar }} width={90} height={90} className="rounded-full bg-primary" />
     </Pressable>
   )
 }
