@@ -1,4 +1,5 @@
 import { Images } from "@/assets"
+import { Loader } from "@/components/loader"
 import { ToastProvider } from "@/components/ui/toast"
 import { queryClient } from "@/libs/react-query"
 import { useStore } from "@/libs/valtio"
@@ -27,6 +28,7 @@ export default function () {
   return (
     <ReaderProvider>
       <QueryClientProvider client={queryClient}>
+        <Loader />
         <ToastProvider position="top">
           <Stack screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="index" options={{ headerShown: false }} />

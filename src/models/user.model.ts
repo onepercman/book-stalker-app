@@ -1,5 +1,6 @@
 import { API_URL } from "@/config/endpoints.config"
 import { Service } from "@/services/app.service"
+import { appStore } from "@/stores/app.store"
 import { getAuth } from "@/utils/api"
 import * as FileSystem from "expo-file-system"
 import * as ImagePicker from "expo-image-picker"
@@ -33,21 +34,28 @@ export class UserModel {
   }
 
   async updateAvatar() {
-    if (!this.user) return
-    const { assets } = await ImagePicker.launchImageLibraryAsync({ allowsEditing: true, aspect: [1, 1] })
-    if (!assets?.length) return
-    const uri = assets[0].uri
-    const { body } = await FileSystem.uploadAsync(`${API_URL}/user/update-avatar`, uri, {
-      httpMethod: "POST",
-      fieldName: "file",
-      uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-      headers: {
-        Authorization: getAuth(),
-      },
-    })
-    const user = JSON.parse(body) as User
-    this.user = user
-    return this.user.avatar
+    try {
+      if (!this.user) return
+      const { assets } = await ImagePicker.launchImageLibraryAsync({ allowsEditing: true, aspect: [1, 1] })
+      if (!assets?.length) return
+      appStore.setLoading(true)
+      const uri = assets[0].uri
+      const { body } = await FileSystem.uploadAsync(`${API_URL}/user/update-avatar`, uri, {
+        httpMethod: "POST",
+        fieldName: "file",
+        uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+        headers: {
+          Authorization: getAuth(),
+        },
+      })
+      const user = JSON.parse(body) as User
+      this.user = user
+      return this.user.avatar
+    } catch (err) {
+      alert("Update avatar failed")
+    } finally {
+      appStore.setLoading(false)
+    }
   }
 
   logout() {
