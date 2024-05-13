@@ -23,7 +23,7 @@ export default function () {
       <ScrollView>
         <View>
           <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="book" /> New books
+            <Entypo size={24} name="clock" /> Đọc tiếp
           </Text>
           <Carousel
             loop={false}
@@ -37,7 +37,7 @@ export default function () {
 
         <View>
           <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="clock" /> Recents
+            <Entypo size={24} name="book" /> Sách mới
           </Text>
           <Carousel
             loop={false}
@@ -51,7 +51,7 @@ export default function () {
 
         <View>
           <Text className="p-4 text-3xl font-bold">
-            <Entypo size={24} name="star" /> Top rates
+            <Entypo size={24} name="star" /> Đã thích
           </Text>
           <Carousel
             loop={false}

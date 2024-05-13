@@ -1,12 +1,13 @@
 import { BookCard } from "@/components/book-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ProfileAvatar } from "@/components/user/profile-avatar"
 import { useStore } from "@/libs/valtio"
 import { Service } from "@/services/app.service"
 import { userStore } from "@/stores/user.store"
 import { AntDesign, Entypo, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
-import { FlatList, Image, SafeAreaView, Text, View } from "react-native"
+import { FlatList, SafeAreaView, Text, View } from "react-native"
 
 export default function () {
   const { user } = useStore(userStore)
@@ -25,9 +26,9 @@ export default function () {
     <SafeAreaView>
       <View className="h-full">
         <View className="flex flex-row gap-4 p-4">
-          <Image source={{ uri: user.avatar }} className="h-24 w-24 rounded bg-primary" />
+          <ProfileAvatar />
           <View className="flex flex-col">
-            <Text className="text-3xl font-semibold">{user.name}</Text>
+            <Text className="text-2xl font-semibold">{user.name}</Text>
             <Text className="text-sm font-semibold text-muted">{user.email}</Text>
             <Button
               size="sm"
@@ -35,7 +36,7 @@ export default function () {
               onPress={() => userStore.logout()}
               className="mt-2.5"
             >
-              Logout
+              Đăng xuất
             </Button>
           </View>
         </View>
@@ -46,7 +47,7 @@ export default function () {
               title={
                 <View className="flex flex-row gap-2">
                   <Entypo name="heart" size={16} />
-                  <Text>Favorites</Text>
+                  <Text>Danh sách yêu thích</Text>
                 </View>
               }
             />
@@ -55,7 +56,7 @@ export default function () {
               title={
                 <View className="flex flex-row gap-2">
                   <Octicons name="project" size={16} />
-                  <Text>Porfolio</Text>
+                  <Text>Thống kê</Text>
                 </View>
               }
             />

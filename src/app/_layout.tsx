@@ -28,7 +28,7 @@ export default function () {
     <ReaderProvider>
       <QueryClientProvider client={queryClient}>
         <ToastProvider position="top">
-          <Stack>
+          <Stack screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen
               name="(auth)"
@@ -38,14 +38,7 @@ export default function () {
                 headerBackVisible: false,
               }}
             />
-            <Stack.Screen
-              name="(root)"
-              options={{
-                headerBackground: () => <Image source={Images.background} resizeMode="cover" />,
-                headerTitle: "",
-                headerBackVisible: false,
-              }}
-            />
+            <Stack.Screen name="(root)" options={{ headerShown: false }} />
             <Stack.Screen
               name="[id]"
               options={{

@@ -5,7 +5,7 @@ export enum Mode {
   Prd = "production",
 }
 
-export const MODE: Mode = (process.env.MODE as Mode) || Mode.Dev
+export const MODE: Mode = (process.env.EXPO_PUBLIC_MODE as Mode) || Mode.Dev
 
 export const _LOCAL_ = MODE === Mode.Local
 export const _DEV_ = MODE === Mode.Dev

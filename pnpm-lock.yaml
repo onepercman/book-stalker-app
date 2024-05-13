@@ -13,7 +13,7 @@ dependencies:
     version: 1.4.1(react-native-gesture-handler@2.14.1)(react-native-webview@13.6.4)(react-native@0.73.6)(react@18.2.0)
   '@epubjs-react-native/expo-file-system':
     specifier: ^1.1.3
-    version: 1.1.3(expo-file-system@16.0.9)(react@18.2.0)
+    version: 1.1.3(expo-file-system@17.0.1)(react@18.2.0)
   '@expo/cli':
     specifier: ^0.10.17
     version: 0.10.17(expo-modules-autolinking@1.10.3)
@@ -56,6 +56,9 @@ dependencies:
   expo-document-picker:
     specifier: ^11.10.1
     version: 11.10.1(expo@50.0.17)
+  expo-file-system:
+    specifier: ^17.0.1
+    version: 17.0.1(expo@50.0.17)
   expo-font:
     specifier: ~11.10.3
     version: 11.10.3(expo@50.0.17)
@@ -1825,13 +1828,13 @@ packages:
       react-native-webview: 13.6.4(react-native@0.73.6)(react@18.2.0)
     dev: false
 
-  /@epubjs-react-native/expo-file-system@1.1.3(expo-file-system@16.0.9)(react@18.2.0):
+  /@epubjs-react-native/expo-file-system@1.1.3(expo-file-system@17.0.1)(react@18.2.0):
     resolution: {integrity: sha512-l5sER9ZeCfn6At1kq0DEGTtjOq8AZTwriNl2pJEfj5Gh5AiLqScw7vSWwlD3sG9w+NWfslmpFJ7uLz2BvKBfgA==}
     peerDependencies:
       expo-file-system: '*'
       react: '*'
     dependencies:
-      expo-file-system: 16.0.9(expo@50.0.17)
+      expo-file-system: 17.0.1(expo@50.0.17)
       react: 18.2.0
     dev: false
 
@@ -5489,6 +5492,14 @@ packages:
 
   /expo-file-system@16.0.9(expo@50.0.17):
     resolution: {integrity: sha512-3gRPvKVv7/Y7AdD9eHMIdfg5YbUn2zbwKofjsloTI5sEC57SLUFJtbLvUCz9Pk63DaSQ7WIE1JM0EASyvuPbuw==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 50.0.17(@babel/core@7.24.4)(@react-native/babel-preset@0.74.81)
+    dev: false
+
+  /expo-file-system@17.0.1(expo@50.0.17):
+    resolution: {integrity: sha512-dYpnZJqTGj6HCYJyXAgpFkQWsiCH3HY1ek2cFZVHFoEc5tLz9gmdEgTF6nFHurvmvfmXqxi7a5CXyVm0aFYJBw==}
     peerDependencies:
       expo: '*'
     dependencies:

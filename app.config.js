@@ -56,7 +56,18 @@ module.exports = {
       bundler: "metro",
       favicon: "./public/favicon-32x32.png",
     },
-    plugins: [["expo-router"], ["expo-secure-store"], ["expo-document-picker"], ["expo-file-system"]],
+    plugins: [
+      ["expo-router"],
+      ["expo-secure-store"],
+      ["expo-document-picker"],
+      ["expo-file-system"],
+      [
+        "expo-image-picker",
+        {
+          photosPermission: "The app accesses your photos to let you share them with your friends.",
+        },
+      ],
+    ],
     extra: {
       eas: {
         projectId: "c5cddb1a-4054-45f3-8212-36a4c9482807",
