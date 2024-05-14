@@ -1,6 +1,6 @@
 module.exports = {
   expo: {
-    name: "justlaunch.app - expo-router-starter-kit",
+    name: "bookstalker.app - expo-router-starter-kit",
     experiments: {
       typedRoutes: true,
       tsconfigPaths: true,

@@ -20,7 +20,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: palette(colors.violet),
+        primary: palette(colors.blue),
         content: colors.black,
         default: colors.gray[200],
         line: colors.gray[200],

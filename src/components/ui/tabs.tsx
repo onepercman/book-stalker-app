@@ -38,7 +38,7 @@ function TabsTrigger({ value, title, className, textClasses, ...props }: TabsTri
     <TouchableOpacity
       className={cn(
         "border-b-2 border-transparent px-4 py-2 text-xl transition-colors",
-        activeTab === value && "border-primary-700",
+        activeTab === value && "border-primary-500",
         className,
       )}
       onPress={() => setActiveTab(value)}

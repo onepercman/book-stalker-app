@@ -1,4 +1,3 @@
-import { Images } from "@/assets"
 import { Loader } from "@/components/loader"
 import { ToastProvider } from "@/components/ui/toast"
 import { queryClient } from "@/libs/react-query"
@@ -8,7 +7,7 @@ import { ReaderProvider } from "@epubjs-react-native/core"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { Stack, useRouter } from "expo-router"
 import { useEffect } from "react"
-import { Image, LogBox } from "react-native"
+import { LogBox } from "react-native"
 import "../styles/globals.css"
 LogBox.ignoreAllLogs()
 
@@ -32,14 +31,7 @@ export default function () {
         <ToastProvider position="top">
           <Stack screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="(auth)"
-              options={{
-                headerBackground: () => <Image source={Images.background} resizeMode="cover" />,
-                headerTitle: "",
-                headerBackVisible: false,
-              }}
-            />
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen name="(root)" options={{ headerShown: false }} />
             <Stack.Screen name="[id]" options={{ presentation: "modal", headerShown: false }} />
             <Stack.Screen name="reading/[id]" options={{ headerShown: false }} />

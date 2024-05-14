@@ -16,7 +16,7 @@ export default function () {
         initialRouteName="home"
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: colors.violet[500],
+          tabBarActiveTintColor: colors.blue[500],
           tabBarStyle: { height: 76 },
           tabBarLabel({ children, color }) {
             return (
