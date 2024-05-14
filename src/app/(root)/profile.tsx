@@ -7,10 +7,13 @@ import { Service } from "@/services/app.service"
 import { userStore } from "@/stores/user.store"
 import { AntDesign, Entypo, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
-import { FlatList, SafeAreaView, Text, View } from "react-native"
+import { useRef } from "react"
+import { FlatList, SafeAreaView, ScrollView, Text, View } from "react-native"
 
 export default function () {
   const { user } = useStore(userStore)
+
+  const scrollViewRef = useRef<ScrollView>(null)
 
   const { data: bookList } = useQuery({
     queryKey: ["profile book list"],
@@ -42,24 +45,44 @@ export default function () {
         </View>
         <Tabs defaultValue="1">
           <TabsList>
-            <TabsTrigger
-              value="1"
-              title={
-                <View className="flex flex-row gap-2">
-                  <Entypo name="heart" size={16} />
-                  <Text>Danh sách yêu thích</Text>
-                </View>
-              }
-            />
-            <TabsTrigger
-              value="3"
-              title={
-                <View className="flex flex-row gap-2">
-                  <Octicons name="project" size={16} />
-                  <Text>Thống kê</Text>
-                </View>
-              }
-            />
+            <ScrollView ref={scrollViewRef} horizontal>
+              <TabsTrigger
+                onPressOut={() => {
+                  scrollViewRef.current?.scrollTo({ x: 0 })
+                }}
+                value="1"
+                title={
+                  <View className="flex flex-row gap-2">
+                    <Entypo name="open-book" size={16} />
+                    <Text>Danh sách đọc</Text>
+                  </View>
+                }
+              />
+              <TabsTrigger
+                onPressOut={() => {
+                  scrollViewRef.current?.scrollTo({ x: 50 })
+                }}
+                value="2"
+                title={
+                  <View className="flex flex-row gap-2">
+                    <Octicons name="heart" size={16} />
+                    <Text>Danh sách yêu thích</Text>
+                  </View>
+                }
+              />
+              <TabsTrigger
+                onPressOut={() => {
+                  scrollViewRef.current?.scrollTo({ x: 120 })
+                }}
+                value="3"
+                title={
+                  <View className="flex flex-row gap-2">
+                    <Octicons name="calendar" size={16} />
+                    <Text>Lịch đọc</Text>
+                  </View>
+                }
+              />
+            </ScrollView>
           </TabsList>
 
           <TabsContent value="1">
@@ -73,8 +96,16 @@ export default function () {
               />
             ) : null}
           </TabsContent>
-          <TabsContent value="3">
-            <Text>Porfolio</Text>
+          <TabsContent value="2">
+            {bookList ? (
+              <FlatList
+                className="h-full"
+                numColumns={3}
+                data={bookList}
+                keyExtractor={(e) => e._id}
+                renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
+              />
+            ) : null}
           </TabsContent>
         </Tabs>
       </View>

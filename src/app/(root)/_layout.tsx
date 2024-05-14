@@ -1,6 +1,6 @@
 import { useStore } from "@/libs/valtio"
 import { userStore } from "@/stores/user.store"
-import { Entypo } from "@expo/vector-icons"
+import { Entypo, FontAwesome, FontAwesome6 } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 import { Image, Text, View } from "react-native"
 import colors from "tailwindcss/colors"
@@ -38,14 +38,23 @@ export default function () {
           name="explore"
           options={{
             title: "Khám phá",
-            tabBarIcon: ({ color }) => <Entypo size={16} name="compass" color={color} />,
+            tabBarIcon: ({ color }) => <FontAwesome6 size={16} name="compass" color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="dashboard"
+          options={{
+            title: "Tổng quan",
+            tabBarIcon: ({ color }) => <FontAwesome size={16} name="dashboard" color={color} />,
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
             title: user.name,
-            tabBarIcon: () => <Image width={16} height={16} source={{ uri: user.avatar }} className="rounded-full" />,
+            tabBarIcon: () => (
+              <Image width={16} height={16} source={{ uri: user.avatar }} className="rounded-full border border-line" />
+            ),
           }}
         />
       </Tabs>

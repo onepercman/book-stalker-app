@@ -1,12 +1,30 @@
-import { BookCard } from "@/components/book-card"
+import { ExploreList } from "@/components/explore-list"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Service } from "@/services/app.service"
 import { Entypo } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
-import { FlatList, SafeAreaView, View } from "react-native"
+import { useRef } from "react"
+import { SafeAreaView, ScrollView, View } from "react-native"
+
+const categories = [
+  "Mọi thể loại",
+  "Tiểu thuyết",
+  "Khoa học",
+  "Giả tưởng",
+  "Lãng mạn",
+  "Kinh dị",
+  "Trinh thám",
+  "Kinh điển",
+  "Giáo dục",
+  "Lịch sử",
+  "Nấu ăn",
+]
 
 export default function () {
+  const scrollViewRef = useRef<ScrollView>(null)
+
   const { data } = useQuery({
     queryKey: ["explore book list"],
     async queryFn() {
@@ -24,13 +42,26 @@ export default function () {
         <Button leftIcon={<Entypo size={20} name="magnifying-glass" />} />
       </View>
 
-      <FlatList
-        className="h-full"
-        numColumns={3}
-        data={data}
-        keyExtractor={(e) => e._id}
-        renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
-      />
+      <Tabs defaultValue={categories[0]}>
+        <TabsList className="overflow-auto">
+          <ScrollView ref={scrollViewRef} horizontal>
+            {categories.map((category, index) => (
+              <TabsTrigger
+                title={category}
+                value={category}
+                onPressOut={function (e) {
+                  scrollViewRef.current?.scrollTo({ x: (index * 750) / categories.length })
+                }}
+              />
+            ))}
+          </ScrollView>
+        </TabsList>
+        {categories.map((category) => (
+          <TabsContent value={category}>
+            <ExploreList />
+          </TabsContent>
+        ))}
+      </Tabs>
     </SafeAreaView>
   )
 }

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Service } from "@/services/app.service"
-import { Octicons } from "@expo/vector-icons"
+import { Entypo, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native"
@@ -29,14 +29,17 @@ export default function () {
             <Text className="text-2xl font-medium">{data?.name}</Text>
           </View>
         </View>
-        <View className="p-4">
+        <View className="flex flex-row gap-2 p-4">
+          <Button leftIcon={<Entypo size={16} name="open-book" />} />
           <Button
             variant="primary"
             rightIcon={<Octicons name="book" />}
+            className="grow"
             onPress={() => router.replace(`/reading/${data._id}`)}
           >
             Đọc sách
           </Button>
+          <Button leftIcon={<Octicons size={16} name="heart" />} />
         </View>
 
         <View className="flex h-full flex-col gap-2 p-4">

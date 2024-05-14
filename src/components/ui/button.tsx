@@ -4,13 +4,15 @@ import { cva, type VariantProps } from "class-variance-authority"
 import React from "react"
 import { Text, TouchableOpacity } from "react-native"
 
-const buttonVariants = cva("flex flex-row items-center justify-center rounded gap-1", {
+const buttonVariants = cva("flex flex-row items-center justify-center rounded gap-2", {
   variants: {
     variant: {
       default: "bg-default",
       outline: "bg-transparent border border-line",
       outlinePrimary: "bg-transparent border border-primary",
       primary: "bg-primary",
+      error: "bg-error",
+      outlinedError: "bg-transparent",
       ghost: "bg-transparent",
       link: "text-primary underline-offset-4",
     },
@@ -35,6 +37,8 @@ const buttonTextVariants = cva("text-center font-medium", {
       default: "text-content",
       outline: "text-white",
       outlinePrimary: "text-white",
+      error: "text-white",
+      outlinedError: "text-error",
       primary: "text-white",
       ghost: "text-primary-600",
       link: "text-primary-600 underline",
