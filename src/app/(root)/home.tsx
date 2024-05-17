@@ -1,4 +1,6 @@
 import { BookCard } from "@/components/book-card"
+import { CategoryCard } from "@/components/category-card"
+import { useCategories } from "@/hooks/use-categories"
 import { Service } from "@/services/app.service"
 import { Entypo } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
@@ -13,6 +15,8 @@ export default function () {
       return data
     },
   })
+
+  const { data: categories } = useCategories()
 
   if (!data?.length) return null
 
@@ -37,7 +41,7 @@ export default function () {
 
         <View>
           <Text className="p-4 font-semibold">
-            <Entypo size={16} name="book" /> Sách mới
+            <Entypo size={16} name="star" /> Đã thích
           </Text>
           <Carousel
             loop={false}
@@ -51,15 +55,15 @@ export default function () {
 
         <View>
           <Text className="p-4 font-semibold">
-            <Entypo size={16} name="star" /> Đã thích
+            <Entypo size={16} name="list" /> Thể loại
           </Text>
           <Carousel
             loop={false}
             style={{ width: width }}
-            data={data}
+            data={categories}
             width={width / 3}
             height={200}
-            renderItem={({ item }) => <BookCard data={item} />}
+            renderItem={({ item }) => <CategoryCard data={item} />}
           />
         </View>
       </ScrollView>

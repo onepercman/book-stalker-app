@@ -4,6 +4,7 @@ import { appStore } from "@/stores/app.store"
 import { getAuth } from "@/utils/api"
 import * as FileSystem from "expo-file-system"
 import * as ImagePicker from "expo-image-picker"
+import * as Storage from "expo-secure-store"
 
 export class UserModel {
   user: User | undefined
@@ -31,6 +32,10 @@ export class UserModel {
       this.logout()
     }
     return response
+  }
+
+  saveToken() {
+    if (this.jwt) Storage.setItem("jwt", this.jwt)
   }
 
   async updateAvatar() {
@@ -61,6 +66,7 @@ export class UserModel {
   logout() {
     this.user = undefined
     this.jwt = undefined
+    Storage.deleteItemAsync("jwt")
   }
 
   getJwt() {

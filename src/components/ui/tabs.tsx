@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 
 import { cn } from "@/libs/utils"
@@ -13,11 +13,18 @@ const TabsContext = createContext<TabsContextProps>({
 })
 
 interface TabsProps {
-  defaultValue: string
+  defaultValue?: string
   children: React.ReactNode
+  value?: string
 }
-function Tabs({ defaultValue, children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultValue)
+function Tabs({ defaultValue, value, children }: TabsProps) {
+  const [activeTab, setActiveTab] = useState<string>(defaultValue || "")
+
+  useEffect(() => {
+    if (value) {
+      setActiveTab(value)
+    }
+  }, [value])
 
   return <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>
 }

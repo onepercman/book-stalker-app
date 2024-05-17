@@ -1,5 +1,10 @@
-import { userStore } from "@/stores/user.store"
+import * as Storage from "expo-secure-store"
 
 export function getAuth() {
-  return `Bearer ${userStore.getJwt()}`
+  try {
+    const jwt = Storage.getItem("jwt")
+    return `Bearer ${jwt}`
+  } catch (err) {
+    return ""
+  }
 }

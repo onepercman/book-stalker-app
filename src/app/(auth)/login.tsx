@@ -25,7 +25,6 @@ export default function () {
 
   async function submit({ email, password }: LoginDto) {
     const { data, statusText } = await userStore.login(email, password)
-
     if (data) {
       router.push("/(root)/home")
     } else {
