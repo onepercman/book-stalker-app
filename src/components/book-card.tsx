@@ -24,7 +24,7 @@ export const BookCard: FC<{ data: Book; className?: string }> = ({ data, classNa
             paddingVertical: 8,
           }}
         >
-          <Text className="line-clamp-2 text-center text-sm font-medium text-white">{data.name}</Text>
+          <Text className="line-clamp-2 text-center text-sm font-medium text-invert">{data.name}</Text>
         </LinearGradient>
       </ImageBackground>
     </Pressable>

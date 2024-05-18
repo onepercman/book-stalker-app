@@ -14,6 +14,7 @@ export default function () {
     <View className="h-full">
       <Tabs
         initialRouteName="home"
+        sceneContainerStyle={{ backgroundColor: colors.white }}
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: colors.blue[500],
@@ -51,7 +52,7 @@ export default function () {
         <Tabs.Screen
           name="profile"
           options={{
-            title: user.name,
+            title: "Tài khoản",
             tabBarIcon: () => (
               <Image width={16} height={16} source={{ uri: user.avatar }} className="rounded-full border border-line" />
             ),

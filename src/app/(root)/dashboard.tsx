@@ -7,20 +7,20 @@ export default function () {
       <ScrollView className="flex h-full">
         <View className="px-4 py-2">
           <View className="flex flex-col gap-4 rounded bg-primary p-6">
-            <Text className="text-2xl font-semibold text-white">Thời gian đọc hôm nay</Text>
-            <Text className="text-4xl font-bold text-white">2 giờ 5 phút</Text>
+            <Text className="text-2xl font-semibold text-invert">Thời gian đọc hôm nay</Text>
+            <Text className="text-4xl font-bold text-invert">2 giờ 5 phút</Text>
           </View>
         </View>
         <View className="px-4 py-2">
           <View className="flex flex-col gap-4 rounded bg-primary-400 p-6">
-            <Text className="text-2xl font-semibold text-white">Thời gian đọc tuần này</Text>
-            <Text className="text-4xl font-bold text-white">2 giờ 5 phút</Text>
+            <Text className="text-2xl font-semibold text-invert">Thời gian đọc tuần này</Text>
+            <Text className="text-4xl font-bold text-invert">2 giờ 5 phút</Text>
           </View>
         </View>
         <View className="px-4 py-2">
           <View className="flex flex-col gap-4 rounded bg-primary-300 p-6">
-            <Text className="text-2xl font-semibold text-white">Thời gian đọc tháng này</Text>
-            <Text className="text-4xl font-bold text-white">2 giờ 5 phút</Text>
+            <Text className="text-2xl font-semibold text-invert">Thời gian đọc tháng này</Text>
+            <Text className="text-4xl font-bold text-invert">2 giờ 5 phút</Text>
           </View>
         </View>
 

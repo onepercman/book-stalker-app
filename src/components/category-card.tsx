@@ -16,7 +16,7 @@ export const CategoryCard: FC<{ data: Category; className?: string }> = ({ data,
         className="relative flex h-full w-full flex-col gap-4 overflow-hidden rounded-xl"
       >
         <View className="absolute flex h-full w-full justify-center bg-black/60 text-center">
-          <Text className="line-clamp-2 text-center text-lg font-semibold text-white">{data.name}</Text>
+          <Text className="line-clamp-2 text-center text-lg font-semibold text-invert">{data.name}</Text>
         </View>
       </ImageBackground>
     </Pressable>

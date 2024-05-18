@@ -11,8 +11,8 @@ export default function () {
     <ImageBackground source={Images.background} resizeMode="cover">
       <SafeAreaView className="flex h-screen w-screen flex-col items-center justify-between bg-gradient-to-b from-primary to-transparent">
         <View className="flex grow flex-col items-center justify-center text-center">
-          <Text className="text-6xl font-semibold text-white">BookStalker</Text>
-          <Text className="text-white/80">Đọc sách theo cách của bạn</Text>
+          <Text className="text-6xl font-semibold text-invert">BookStalker</Text>
+          <Text className="text-invert/80">Đọc sách theo cách của bạn</Text>
           <Button
             variant="outlinePrimary"
             className="mt-4 self-stretch"
@@ -24,7 +24,7 @@ export default function () {
         </View>
 
         <Pressable onPress={() => router.push("/(auth)/register")}>
-          <Text className="text-white">
+          <Text className="text-invert">
             Chưa có tài khoản? <Text className="underline">Đăng ký</Text>
           </Text>
         </Pressable>

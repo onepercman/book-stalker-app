@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Service } from "@/services/app.service"
-import { Entypo, Octicons } from "@expo/vector-icons"
+import { Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native"
@@ -30,7 +30,6 @@ export default function () {
           </View>
         </View>
         <View className="flex flex-row gap-2 p-4">
-          <Button leftIcon={<Entypo size={16} name="open-book" />} />
           <Button
             variant="primary"
             rightIcon={<Octicons name="book" />}

@@ -22,6 +22,7 @@ module.exports = {
       colors: {
         primary: palette(colors.blue),
         content: colors.black,
+        invert: colors.white,
         default: colors.gray[200],
         line: colors.gray[200],
         background: colors.white,

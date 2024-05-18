@@ -35,11 +35,11 @@ const buttonTextVariants = cva("text-center font-medium", {
   variants: {
     variant: {
       default: "text-content",
-      outline: "text-white",
-      outlinePrimary: "text-white",
-      error: "text-white",
+      outline: "text-invert",
+      outlinePrimary: "text-invert",
+      error: "text-invert",
       outlinedError: "text-error",
-      primary: "text-white",
+      primary: "text-invert",
       ghost: "text-primary-600",
       link: "text-primary-600 underline",
     },

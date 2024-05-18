@@ -63,7 +63,7 @@ function Toast({ id, message, onHide, variant = "default", duration = 3000, show
       {showProgress && (
         <View className="mt-2 rounded">
           <Animated.View
-            className="h-2 rounded bg-white opacity-30 dark:bg-black"
+            className="h-2 rounded bg-invert opacity-30 dark:bg-black"
             style={{
               width: progress.interpolate({
                 inputRange: [0, 1],
