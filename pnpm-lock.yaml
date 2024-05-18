@@ -68,6 +68,9 @@ dependencies:
   expo-image-picker:
     specifier: ^14.7.1
     version: 14.7.1(expo@50.0.17)
+  expo-linear-gradient:
+    specifier: ^13.0.2
+    version: 13.0.2(expo@50.0.17)
   expo-linking:
     specifier: ^6.2.2
     version: 6.2.2(expo@50.0.17)
@@ -5605,6 +5608,14 @@ packages:
 
   /expo-keep-awake@12.8.2(expo@50.0.17):
     resolution: {integrity: sha512-uiQdGbSX24Pt8nGbnmBtrKq6xL/Tm3+DuDRGBk/3ZE/HlizzNosGRIufIMJ/4B4FRw4dw8KU81h2RLuTjbay6g==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 50.0.17(@babel/core@7.24.4)(@react-native/babel-preset@0.74.81)
+    dev: false
+
+  /expo-linear-gradient@13.0.2(expo@50.0.17):
+    resolution: {integrity: sha512-EDcILUjRKu4P1rtWcwciN6CSyGtH7Bq4ll3oTRV7h3h8oSzSilH1g6z7kTAMlacPBKvMnkkWOGzW6KtgMKEiTg==}
     peerDependencies:
       expo: '*'
     dependencies:

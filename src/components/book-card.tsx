@@ -1,17 +1,32 @@
 import { cn } from "@/libs/utils"
+import { LinearGradient } from "expo-linear-gradient"
 import { useRouter } from "expo-router"
 import { FC } from "react"
-import { Image, Pressable, Text, View } from "react-native"
+import { ImageBackground, Pressable, Text } from "react-native"
 
 export const BookCard: FC<{ data: Book; className?: string }> = ({ data, className }) => {
   const router = useRouter()
 
   return (
-    <Pressable className={cn("h-60 w-full p-2", className)} onPress={() => router.push(`/${data._id}`)}>
-      <View className="flex h-full flex-col gap-4 overflow-hidden rounded-xl">
-        <Image source={{ uri: data.thumbnail }} className="h-40 w-full" />
-        <Text className="line-clamp-2 text-center text-sm font-medium">{data.name}</Text>
-      </View>
+    <Pressable className={cn("h-56 w-full p-2", className)} onPress={() => router.push(`/${data._id}`)}>
+      <ImageBackground
+        source={{ uri: data.thumbnail }}
+        className="flex h-full flex-col justify-end gap-4 overflow-hidden rounded-xl"
+      >
+        <LinearGradient
+          colors={["transparent", "black"]}
+          locations={[0, 0.8]}
+          style={{
+            height: 60,
+            marginBottom: -16,
+            justifyContent: "flex-end",
+            paddingHorizontal: 4,
+            paddingVertical: 8,
+          }}
+        >
+          <Text className="line-clamp-2 text-center text-sm font-medium text-white">{data.name}</Text>
+        </LinearGradient>
+      </ImageBackground>
     </Pressable>
   )
 }
