@@ -5,7 +5,7 @@ import { ProfileAvatar } from "@/components/user/profile-avatar"
 import { useStore } from "@/libs/valtio"
 import { Service } from "@/services/app.service"
 import { userStore } from "@/stores/user.store"
-import { AntDesign, Entypo, Octicons } from "@expo/vector-icons"
+import { AntDesign, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useRef } from "react"
 import { FlatList, SafeAreaView, ScrollView, Text, View } from "react-native"
@@ -47,22 +47,8 @@ export default function () {
           <TabsList>
             <ScrollView ref={scrollViewRef} horizontal>
               <TabsTrigger
-                onPressOut={() => {
-                  scrollViewRef.current?.scrollTo({ x: 0 })
-                }}
+                className="flex-1"
                 value="1"
-                title={
-                  <View className="flex flex-row gap-2">
-                    <Entypo name="open-book" size={16} />
-                    <Text>Danh sách đọc</Text>
-                  </View>
-                }
-              />
-              <TabsTrigger
-                onPressOut={() => {
-                  scrollViewRef.current?.scrollTo({ x: 50 })
-                }}
-                value="2"
                 title={
                   <View className="flex flex-row gap-2">
                     <Octicons name="heart" size={16} />
@@ -71,10 +57,8 @@ export default function () {
                 }
               />
               <TabsTrigger
-                onPressOut={() => {
-                  scrollViewRef.current?.scrollTo({ x: 120 })
-                }}
-                value="3"
+                className="flex-1"
+                value="2"
                 title={
                   <View className="flex flex-row gap-2">
                     <Octicons name="calendar" size={16} />
@@ -96,17 +80,7 @@ export default function () {
               />
             ) : null}
           </TabsContent>
-          <TabsContent value="2">
-            {bookList ? (
-              <FlatList
-                className="h-full"
-                numColumns={3}
-                data={bookList}
-                keyExtractor={(e) => e._id}
-                renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
-              />
-            ) : null}
-          </TabsContent>
+          <TabsContent value="2"></TabsContent>
         </Tabs>
       </View>
 
