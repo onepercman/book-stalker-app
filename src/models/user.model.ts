@@ -19,6 +19,7 @@ export class UserModel {
     } else {
       this.logout()
     }
+    this.saveToken()
     return response
   }
 
@@ -31,6 +32,7 @@ export class UserModel {
     } else {
       this.logout()
     }
+    this.saveToken()
     return response
   }
 

@@ -24,7 +24,7 @@ export default function () {
     <SafeAreaView>
       <ScrollView className="h-full">
         <View className="flex flex-col items-center gap-4 p-4">
-          <Image source={{ uri: data.thumbnail }} className="h-52 w-36" />
+          <Image source={{ uri: data.thumbnail }} className="aspect-[3/5] w-full rounded-xl" />
           <View className="flex flex-col">
             <Text className="text-2xl font-medium">{data?.name}</Text>
           </View>

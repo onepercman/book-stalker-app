@@ -4,5 +4,5 @@ interface Book {
   name: string
   uri: string
   thumbnail: string
-  tracker?: Tracker
+  tracker: Tracker | null
 }
