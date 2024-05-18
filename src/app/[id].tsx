@@ -10,13 +10,18 @@ export default function () {
 
   const { id } = useLocalSearchParams()
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["book details", id],
     async queryFn() {
       const { data } = await Service.book.get(id as string)
       return data
     },
   })
+
+  async function like(id: string) {
+    const { data } = await Service.reaction.react(id)
+    if (data) refetch()
+  }
 
   if (!data) return
 
@@ -38,7 +43,7 @@ export default function () {
           >
             Đọc sách
           </Button>
-          <Button leftIcon={<Octicons size={16} name="heart" />} />
+          <Button leftIcon={<Octicons size={16} name="heart" />} onPress={() => like(data._id)} />
         </View>
 
         <View className="flex h-full flex-col gap-2 p-4">
