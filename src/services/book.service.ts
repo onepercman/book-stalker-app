@@ -1,5 +1,4 @@
 import { api } from "@/libs/axios"
-import { getAuth } from "@/utils/api"
 
 export class BookService {
   list() {
@@ -13,7 +12,7 @@ export class BookService {
     return api.request<Book>({
       method: "GET",
       url: `/book/${id}`,
-      headers: { Authorization: getAuth() },
+      headers: { Authorization: true },
     })
   }
 }

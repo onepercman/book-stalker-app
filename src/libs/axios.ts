@@ -1,21 +1,22 @@
 import { API_URL } from "@/config/endpoints.config"
+import { getAuth } from "@/utils/api"
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
-    console.log("🔵 request ", API_URL, config.url)
-
+    if (config.headers.Authorization) {
+      config.headers.Authorization = getAuth()
+    }
     return config
   },
 }
 
 const responseHandler = {
   onFulfilled(response: AxiosResponse) {
-    console.log("🟢 request success")
     return Promise.resolve(response)
   },
   onRejected(error: AxiosError) {
-    console.log("🔴 request failed")
+    console.log("🔴", error.config?.baseURL || "" + error.config?.url)
     if (error.response?.data) {
       const message = (error.response.data as any)["message"]
       error.response.statusText = message

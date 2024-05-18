@@ -1,5 +1,4 @@
 import { api } from "@/libs/axios"
-import { getAuth } from "@/utils/api"
 
 export class TrackerService {
   update(data: any) {
@@ -7,7 +6,7 @@ export class TrackerService {
       method: "PUT",
       url: "/tracker",
       data,
-      headers: { Authorization: getAuth() },
+      headers: { Authorization: true },
     })
   }
 }
