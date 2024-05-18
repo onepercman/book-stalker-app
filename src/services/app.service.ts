@@ -1,5 +1,6 @@
 import { BookService } from "./book.service"
 import { CategoryService } from "./category.service"
+import { ReadTimeService } from "./read-time.service"
 import { TrackerService } from "./tracker.service"
 import { UserService } from "./user.service"
 
@@ -8,4 +9,5 @@ export const Service = {
   book: new BookService(),
   tracker: new TrackerService(),
   category: new CategoryService(),
+  readTime: new ReadTimeService(),
 }

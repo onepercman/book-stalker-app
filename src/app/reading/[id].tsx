@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { useReadTimePost } from "@/hooks/use-read-time-post"
 import { cn } from "@/libs/utils"
 import { Service } from "@/services/app.service"
 import { trackerStore } from "@/stores/tracker.store"
@@ -14,6 +15,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 const THEMES = Object.values(Themes)
 
 export default function () {
+  useReadTimePost()
+
   const { id } = useLocalSearchParams()
 
   const { data } = useQuery({

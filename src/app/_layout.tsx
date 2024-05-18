@@ -6,10 +6,14 @@ import { userStore } from "@/stores/user.store"
 import { ReaderProvider } from "@epubjs-react-native/core"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { Stack, useRouter } from "expo-router"
+import moment from "moment"
+import "moment/locale/vi"
 import { useEffect } from "react"
 import { LogBox } from "react-native"
 import "../styles/globals.css"
 LogBox.ignoreAllLogs()
+
+moment.locale("vi")
 
 export default function () {
   const { user } = useStore(userStore)
