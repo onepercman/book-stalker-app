@@ -12,7 +12,7 @@ export default function () {
     queryKey: ["home book list"],
     async queryFn() {
       const { data } = await Service.book.list()
-      return data
+      return data.data
     },
   })
 
@@ -24,44 +24,44 @@ export default function () {
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <View>
+      <ScrollView className="p-4">
+        <View className="my-4 rounded border border-line bg-background shadow">
           <Text className="p-4 font-semibold">
             <Entypo size={16} name="clock" /> Đọc tiếp
           </Text>
           <Carousel
             loop={false}
-            style={{ width: width }}
+            style={{ width: width - 32 }}
             data={data}
-            width={width / 3}
+            width={(width - 32) / 3}
             height={200}
             renderItem={({ item }) => <BookCard data={item} />}
           />
         </View>
 
-        <View>
+        <View className="my-4 rounded border border-line bg-background shadow">
           <Text className="p-4 font-semibold">
             <Entypo size={16} name="star" /> Đã thích
           </Text>
           <Carousel
             loop={false}
-            style={{ width: width }}
+            style={{ width: width - 32 }}
             data={data}
-            width={width / 3}
+            width={(width - 32) / 3}
             height={200}
             renderItem={({ item }) => <BookCard data={item} />}
           />
         </View>
 
-        <View>
+        <View className="my-4 rounded border border-line bg-background shadow">
           <Text className="p-4 font-semibold">
             <Entypo size={16} name="list" /> Thể loại
           </Text>
           <Carousel
             loop={false}
-            style={{ width: width }}
-            data={categories}
-            width={width / 3}
+            style={{ width: width - 32 }}
+            data={categories!}
+            width={(width - 32) / 3}
             height={200}
             renderItem={({ item }) => <CategoryCard data={item} />}
           />

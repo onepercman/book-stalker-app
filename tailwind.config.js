@@ -18,6 +18,9 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    boxShadow: {
+      DEFAULT: "0 15px 5px -35px rgba(black, 0.01)",
+    },
     extend: {
       colors: {
         primary: palette(colors.blue),

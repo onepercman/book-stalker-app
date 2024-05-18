@@ -1,10 +1,11 @@
 import { api } from "@/libs/axios"
 
 export class BookService {
-  list() {
-    return api.request<Book[]>({
+  list(params?: any) {
+    return api.request<Paginated<Book>>({
       method: "GET",
       url: "/book",
+      params,
     })
   }
 

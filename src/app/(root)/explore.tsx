@@ -21,7 +21,7 @@ export default function () {
     queryKey: ["explore book list"],
     async queryFn() {
       const { data } = await Service.book.list()
-      return data
+      return data.data
     },
   })
 

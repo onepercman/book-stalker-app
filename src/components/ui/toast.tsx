@@ -45,7 +45,7 @@ function Toast({ id, message, onHide, variant = "default", duration = 3000, show
     <Animated.View
       className={`
         ${toastVariants[variant]}
-        m-2 mb-1 transform rounded-lg p-4 shadow-md transition-all
+        shadow-md m-2 mb-1 transform rounded-lg p-4 transition-all
       `}
       style={{
         opacity,

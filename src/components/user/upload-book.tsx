@@ -54,7 +54,7 @@ export const UploadBook: FC = () => {
         <TouchableOpacity className="h-full w-full" onPress={() => setVisible(false)}>
           <View className="flex flex-1 items-center justify-center bg-black/75 p-4">
             <TouchableOpacity
-              className="w-full rounded-lg border border-line bg-background p-6 shadow-lg"
+              className="shadow-lg w-full rounded-lg border border-line bg-background p-6"
               activeOpacity={1}
             >
               <View className="flex flex-col gap-4">

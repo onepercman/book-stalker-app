@@ -35,7 +35,7 @@ function DialogContent({
       <TouchableOpacity className="h-full w-full" onPress={() => setOpen(false)}>
         <View className="flex flex-1 items-center justify-center bg-black/75">
           <TouchableOpacity
-            className={cn("rounded-lg border border-line bg-background p-6 shadow-lg", className)}
+            className={cn("shadow-lg rounded-lg border border-line bg-background p-6", className)}
             activeOpacity={1}
           >
             {typeof children === "function" ? children({ setOpen }) : children}
