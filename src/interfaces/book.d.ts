@@ -5,4 +5,5 @@ interface Book {
   uri: string
   thumbnail: string
   tracker: Tracker | null
+  isLiked?: boolean
 }

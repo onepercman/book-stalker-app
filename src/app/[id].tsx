@@ -43,7 +43,10 @@ export default function () {
           >
             Đọc sách
           </Button>
-          <Button leftIcon={<Octicons size={16} name="heart" />} onPress={() => like(data._id)} />
+          <Button
+            leftIcon={<Octicons size={16} name={data.isLiked ? "heart-fill" : "heart"} color="red" />}
+            onPress={() => like(data._id)}
+          />
         </View>
 
         <View className="flex h-full flex-col gap-2 p-4">
