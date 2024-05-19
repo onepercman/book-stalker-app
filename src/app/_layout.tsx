@@ -16,17 +16,17 @@ LogBox.ignoreAllLogs()
 moment.locale("vi")
 
 export default function () {
-  const { user } = useStore(userStore)
+  const { user, jwt } = useStore(userStore)
 
   const router = useRouter()
 
   useEffect(() => {
-    if (user) {
+    if (jwt) {
       router.replace("/(root)/home")
     } else {
       router.replace("/")
     }
-  }, [user])
+  }, [jwt])
 
   return (
     <ReaderProvider>
