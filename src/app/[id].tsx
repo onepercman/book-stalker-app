@@ -36,8 +36,11 @@ export default function () {
       <ScrollView className="h-full">
         <View className="flex flex-col items-center gap-4 p-4">
           <Image source={{ uri: data.thumbnail }} className="aspect-[3/5] w-full rounded-xl" />
-          <View className="flex flex-col">
-            <Text className="text-2xl font-medium">{data?.name}</Text>
+          <View className="flex flex-col items-center gap-4">
+            <Text className="text-center text-2xl font-medium">{data?.name}</Text>
+            <View className="rounded bg-primary-100 px-4 py-2">
+              <Text className="text-center font-medium text-primary">{data?.category.name}</Text>
+            </View>
           </View>
         </View>
         <View className="flex flex-row gap-2 p-4">

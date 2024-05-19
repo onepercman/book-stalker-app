@@ -6,4 +6,6 @@ interface Book {
   thumbnail: string
   tracker: Tracker | null
   isLiked?: boolean
+  categoryId: string
+  category: Category
 }
