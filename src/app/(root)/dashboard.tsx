@@ -1,5 +1,5 @@
 import { useReadTime } from "@/hooks/use-read-time"
-import { Entypo, Octicons } from "@expo/vector-icons"
+import { FontAwesome, Octicons } from "@expo/vector-icons"
 import Constants from "expo-constants"
 import { useMemo } from "react"
 import { Dimensions, ScrollView, Text, View } from "react-native"
@@ -59,7 +59,7 @@ export default function () {
     <View>
       <View className="-mb-16 h-40 w-full bg-primary p-4" style={{ paddingTop: Constants.statusBarHeight }}>
         <Text className="mx-auto text-xl font-medium text-invert">
-          <Entypo size={16} name="compass" /> Tổng quan
+          <FontAwesome size={16} name="dashboard" /> Tổng quan
         </Text>
       </View>
       <View>

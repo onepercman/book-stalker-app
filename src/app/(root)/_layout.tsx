@@ -14,7 +14,7 @@ export default function () {
     <View className="h-full">
       <Tabs
         initialRouteName="home"
-        sceneContainerStyle={{ backgroundColor: colors.white }}
+        sceneContainerStyle={{ backgroundColor: colors.blue[50] }}
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: colors.blue[500],
