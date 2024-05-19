@@ -7,7 +7,7 @@ import colors from "tailwindcss/colors"
 const inputVariants = cva("border py-2.5 rounded", {
   variants: {
     variant: {
-      default: "bg-default border-transparent",
+      default: "bg-component border-transparent",
       outlined: "bg-transparent border-line",
     },
     size: {

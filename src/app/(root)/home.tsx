@@ -2,9 +2,10 @@ import { BookCard } from "@/components/book-card"
 import { CategoryCard } from "@/components/category-card"
 import { useCategories } from "@/hooks/use-categories"
 import { Service } from "@/services/app.service"
-import { Entypo } from "@expo/vector-icons"
+import { Entypo, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
-import { Dimensions, SafeAreaView, ScrollView, Text, View } from "react-native"
+import Constants from "expo-constants"
+import { Dimensions, ScrollView, Text, View } from "react-native"
 import Carousel from "react-native-reanimated-carousel"
 
 export default function () {
@@ -23,10 +24,15 @@ export default function () {
   const width = Dimensions.get("window").width
 
   return (
-    <SafeAreaView>
-      <ScrollView className="p-4">
-        <View className="my-4 rounded border border-line bg-background shadow">
-          <Text className="p-4 font-semibold">
+    <ScrollView>
+      <View className="-mb-32 h-52 w-full bg-primary p-4" style={{ paddingTop: Constants.statusBarHeight }}>
+        <Text className="mx-auto text-xl font-medium text-invert">
+          <Octicons size={16} name="home" /> Trang chủ
+        </Text>
+      </View>
+      <View className="px-4">
+        <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
+          <Text className="p-4 text-xl font-semibold">
             <Entypo size={16} name="clock" /> Đọc tiếp
           </Text>
           <Carousel
@@ -39,8 +45,8 @@ export default function () {
           />
         </View>
 
-        <View className="my-4 rounded border border-line bg-background shadow">
-          <Text className="p-4 font-semibold">
+        <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
+          <Text className="p-4 text-xl font-semibold">
             <Entypo size={16} name="star" /> Đã thích
           </Text>
           <Carousel
@@ -53,8 +59,8 @@ export default function () {
           />
         </View>
 
-        <View className="my-4 rounded border border-line bg-background shadow">
-          <Text className="p-4 font-semibold">
+        <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
+          <Text className="p-4 text-xl font-semibold">
             <Entypo size={16} name="list" /> Thể loại
           </Text>
           <Carousel
@@ -63,10 +69,10 @@ export default function () {
             data={categories!}
             width={(width - 32) / 3}
             height={200}
-            renderItem={({ item }) => <CategoryCard data={item} />}
+            renderItem={({ item }) => <CategoryCard data={item as any} />}
           />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   )
 }

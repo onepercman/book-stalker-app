@@ -19,7 +19,7 @@ module.exports = {
       },
     },
     boxShadow: {
-      DEFAULT: "0 15px 5px -35px rgba(black, 0.01)",
+      light: "0 20px 20px -500px",
     },
     extend: {
       colors: {

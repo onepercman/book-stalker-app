@@ -16,17 +16,25 @@ interface TabsProps {
   defaultValue?: string
   children: React.ReactNode
   value?: string
+  onChange?(value: string): void
 }
-function Tabs({ defaultValue, value, children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState<string>(defaultValue || "")
+function Tabs({ defaultValue, value, onChange, children }: TabsProps) {
+  const [active, setActive] = useState<string>(defaultValue || "")
 
   useEffect(() => {
     if (value) {
-      setActiveTab(value)
+      setActive(value)
     }
   }, [value])
 
-  return <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>
+  function handleChange(v: string) {
+    setActive(v)
+    onChange && onChange(v)
+  }
+
+  return (
+    <TabsContext.Provider value={{ activeTab: active, setActiveTab: handleChange }}>{children}</TabsContext.Provider>
+  )
 }
 
 function TabsList({ className, ...props }: React.ComponentPropsWithoutRef<typeof View>) {
