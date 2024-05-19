@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useCategories } from "@/hooks/use-categories"
+import { useDebounce } from "@/libs/custom-hooks/use-debounce"
 import { Service } from "@/services/app.service"
 import { Entypo } from "@expo/vector-icons"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import Constants from "expo-constants"
 import { useLocalSearchParams, useRouter } from "expo-router"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ScrollView, Text, View } from "react-native"
 
 export default function () {
@@ -17,6 +18,10 @@ export default function () {
   const scrollViewRef = useRef<ScrollView>(null)
 
   const { category } = useLocalSearchParams()
+
+  const [searchText, setSearchText] = useState<string>()
+
+  const search = useDebounce(searchText, 500)
 
   const { data: categories } = useCategories()
 
@@ -37,7 +42,7 @@ export default function () {
         take,
       }
     },
-    queryKey: ["explore list data", category],
+    queryKey: ["explore list data", category, search],
     select(data) {
       return {
         data: data.pages.flatMap((el) => el.data),
@@ -48,6 +53,7 @@ export default function () {
       const categoryId = category as string
       const { data } = await Service.book.list({
         categoryId,
+        search,
         ...pageParam,
       })
       return data
@@ -71,9 +77,17 @@ export default function () {
         </Text>
       </View>
       <View className="flex flex-col">
-        <View className="flex flex-row gap-2 p-4">
-          <Input className="grow" placeholder="Tìm kiếm sách..." />
-          <Button leftIcon={<Entypo size={20} name="magnifying-glass" />} />
+        <View className="flex flex-row p-4">
+          <Input
+            value={searchText}
+            onChangeText={(e) => setSearchText(e)}
+            className="grow"
+            inputClasses="pr-10"
+            placeholder="Tìm kiếm sách..."
+          />
+          <Text className="absolute right-8 top-7 text-muted">
+            <Entypo size={20} name="magnifying-glass" />
+          </Text>
         </View>
 
         <Tabs
