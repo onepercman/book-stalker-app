@@ -2,11 +2,10 @@ import { BookCard } from "@/components/book-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProfileAvatar } from "@/components/user/profile-avatar"
+import { useLikedBooks } from "@/hooks/use-liked-books"
 import { useStore } from "@/libs/valtio"
-import { Service } from "@/services/app.service"
 import { userStore } from "@/stores/user.store"
 import { AntDesign, Octicons } from "@expo/vector-icons"
-import { useQuery } from "@tanstack/react-query"
 import Constants from "expo-constants"
 import { useRef } from "react"
 import { FlatList, ScrollView, Text, View } from "react-native"
@@ -16,13 +15,7 @@ export default function () {
 
   const scrollViewRef = useRef<ScrollView>(null)
 
-  const { data: bookList } = useQuery({
-    queryKey: ["profile book list"],
-    async queryFn() {
-      const { data } = await Service.book.list()
-      return data
-    },
-  })
+  const { data: likedBooks } = useLikedBooks()
 
   if (!user) return
 
@@ -71,11 +64,11 @@ export default function () {
           </TabsList>
 
           <TabsContent value="1">
-            {bookList ? (
+            {likedBooks ? (
               <FlatList
                 className="h-full"
                 numColumns={3}
-                data={bookList}
+                data={likedBooks}
                 keyExtractor={(e) => e._id}
                 renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
               />

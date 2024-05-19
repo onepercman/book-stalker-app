@@ -9,6 +9,14 @@ export class BookService {
     })
   }
 
+  liked() {
+    return api.request<Book[]>({
+      method: "GET",
+      url: "/book/liked",
+      headers: { Authorization: true },
+    })
+  }
+
   get(id: string) {
     return api.request<Book>({
       method: "GET",

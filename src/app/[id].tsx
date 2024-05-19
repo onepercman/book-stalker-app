@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { useLikedBooks } from "@/hooks/use-liked-books"
 import { Service } from "@/services/app.service"
 import { Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
@@ -10,6 +11,8 @@ export default function () {
 
   const { id } = useLocalSearchParams()
 
+  const { refetch: refetchLikedBooks } = useLikedBooks()
+
   const { data, refetch } = useQuery({
     queryKey: ["book details", id],
     async queryFn() {
@@ -20,7 +23,10 @@ export default function () {
 
   async function like(id: string) {
     const { data } = await Service.reaction.react(id)
-    if (data) refetch()
+    if (data) {
+      refetch()
+      refetchLikedBooks()
+    }
   }
 
   if (!data) return

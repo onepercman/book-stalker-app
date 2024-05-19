@@ -1,6 +1,7 @@
 import { BookCard } from "@/components/book-card"
 import { CategoryCard } from "@/components/category-card"
 import { useCategories } from "@/hooks/use-categories"
+import { useLikedBooks } from "@/hooks/use-liked-books"
 import { Service } from "@/services/app.service"
 import { Entypo, Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
@@ -16,6 +17,8 @@ export default function () {
       return data.data
     },
   })
+
+  const { data: likedBooks } = useLikedBooks()
 
   const { data: categories } = useCategories()
 
@@ -49,14 +52,16 @@ export default function () {
           <Text className="p-4 text-xl font-semibold">
             <Entypo size={16} name="star" /> Đã thích
           </Text>
-          <Carousel
-            loop={false}
-            style={{ width: width - 32 }}
-            data={data}
-            width={(width - 32) / 3}
-            height={200}
-            renderItem={({ item }) => <BookCard data={item} />}
-          />
+          {likedBooks ? (
+            <Carousel
+              loop={false}
+              style={{ width: width - 32 }}
+              data={likedBooks}
+              width={(width - 32) / 3}
+              height={200}
+              renderItem={({ item }) => <BookCard data={item} />}
+            />
+          ) : null}
         </View>
 
         <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
