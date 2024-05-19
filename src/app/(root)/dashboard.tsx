@@ -5,6 +5,7 @@ import { useMemo } from "react"
 import { Dimensions, ScrollView, Text, View } from "react-native"
 import { LineChart } from "react-native-chart-kit"
 import Carousel from "react-native-reanimated-carousel"
+import colors from "tailwindcss/colors"
 
 export default function () {
   const width = Dimensions.get("window").width
@@ -17,8 +18,8 @@ export default function () {
     function () {
       if (!day?.length) return "0 Phút"
       const total = day.reduce((acc, obj) => acc + obj.value, 0)
-      var hours = Math.floor(total / 3600000)
-      var minutes = Math.floor((total % 3600000) / 60000)
+      var hours = Math.floor(total / 3600)
+      var minutes = Math.floor((total % 3600) / 60)
       let text = ""
       if (hours) text += `${hours} Giờ `
       if (minutes) text += `${minutes} Phút`
@@ -31,8 +32,8 @@ export default function () {
     function () {
       if (!week?.length) return "0 Phút"
       const total = week.reduce((acc, obj) => acc + obj.value, 0)
-      var hours = Math.floor(total / 3600000)
-      var minutes = Math.floor((total % 3600000) / 60000)
+      var hours = Math.floor(total / 3600)
+      var minutes = Math.floor((total % 3600) / 60)
       let text = ""
       if (hours) text += `${hours} Giờ `
       if (minutes) text += `${minutes} Phút`
@@ -45,8 +46,8 @@ export default function () {
     function () {
       if (!month?.length) return "0 Phút"
       const total = month.reduce((acc, obj) => acc + obj.value, 0)
-      var hours = Math.floor(total / 3600000)
-      var minutes = Math.floor((total % 3600000) / 60000)
+      var hours = Math.floor(total / 3600)
+      var minutes = Math.floor((total % 3600) / 60)
       let text = ""
       if (hours) text += `${hours} Giờ `
       if (minutes) text += `${minutes} Phút`
@@ -110,23 +111,34 @@ export default function () {
                       ],
                     }}
                     width={Dimensions.get("window").width - 32}
-                    height={220}
+                    height={230}
                     withDots={false}
-                    yAxisLabel="$"
-                    yAxisSuffix="k"
                     yAxisInterval={1}
+                    formatYLabel={function (e) {
+                      if (+e >= 60 * 60) {
+                        return Math.ceil(+e / 60 / 60) + "h"
+                      }
+                      if (+e >= 60) {
+                        return Math.ceil(+e / 60) + "p" + Math.ceil(+e % 60) + "s"
+                      }
+
+                      return Math.ceil(+e) + "s"
+                    }}
                     chartConfig={{
-                      backgroundColor: "#e26a00",
-                      backgroundGradientFrom: "#fb2722",
-                      backgroundGradientTo: "#ffa726",
+                      strokeWidth: 4,
+                      backgroundColor: colors.blue[500],
+                      backgroundGradientFrom: colors.blue[500],
+                      backgroundGradientTo: colors.blue[300],
                       decimalPlaces: 2,
                       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                      style: { borderRadius: 16 },
+                      formatYLabel(v) {
+                        return "HEHE" + v
+                      },
                     }}
                     bezier
                     style={{
-                      borderRadius: 4,
+                      borderRadius: 8,
                     }}
                   />
                 )
