@@ -21,8 +21,7 @@
         "resourceClass": "m-medium"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "<ADD-YOUR-ENV-VARIABLES>",
-        "EXPO_PUBLIC_REQRES_API_URL": "<ADD-YOUR-ENV-VARIABLES>"
+        "EXPO_PUBLIC_API_URL": "http://3.144.216.183:4000/"
       }
     }
   },
