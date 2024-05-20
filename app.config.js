@@ -1,11 +1,11 @@
 module.exports = {
   expo: {
-    name: "bookstalker.app - expo-router-starter-kit",
+    name: "bookstalker.app - book-stalker",
     experiments: {
       typedRoutes: true,
       tsconfigPaths: true,
     },
-    slug: "expo-router-starter-kit",
+    slug: "book-stalker",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./public/favicon-32x32.png",
@@ -68,9 +68,10 @@ module.exports = {
         },
       ],
     ],
+
     extra: {
       eas: {
-        projectId: "c5cddb1a-4054-45f3-8212-36a4c9482807",
+        projectId: "1f0c1dbf-8c00-449d-9e8f-4b87d2fd5f44",
       },
     },
   },

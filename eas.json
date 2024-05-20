@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 3.8.1"
+    "version": ">= 9.0.7"
   },
   "build": {
     "development": {
@@ -17,8 +17,10 @@
       }
     },
     "production": {
+      "distribution": "internal",
       "ios": {
-        "resourceClass": "m-medium"
+        "resourceClass": "m-medium",
+        "enterpriseProvisioning": "universal"
       },
       "env": {
         "EXPO_PUBLIC_API_URL": "http://3.144.216.183:4000/"
