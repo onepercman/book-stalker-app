@@ -32,8 +32,6 @@ export const ExploreList: FC<{ category?: string; search?: string }> = ({ catego
       }
     },
     async queryFn({ pageParam }) {
-      console.log({ category, search })
-
       const categoryId = category as string
       const { data } = await Service.book.list({
         categoryId,
@@ -57,7 +55,7 @@ export const ExploreList: FC<{ category?: string; search?: string }> = ({ catego
       style={{ height: Dimensions.get("window").height - 260 }}
       numColumns={3}
       data={data?.data}
-      keyExtractor={(e) => e._id}
+      keyExtractor={(e, index) => e._id + index}
       renderItem={({ item }) => <BookCard data={item} className="w-1/3" />}
       ListEmptyComponent={
         isFetching ? (

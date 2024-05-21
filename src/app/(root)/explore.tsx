@@ -54,8 +54,8 @@ export default function () {
           </ScrollView>
         </TabsList>
         {categories.map((cate) => (
-          <TabsContent value={cate._id}>
-            <ExploreList key={cate._id} category={category as string} search={search} />
+          <TabsContent key={cate._id} value={cate._id}>
+            <ExploreList category={category as string} search={search} />
           </TabsContent>
         ))}
       </Tabs>
