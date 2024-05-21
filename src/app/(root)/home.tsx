@@ -25,9 +25,9 @@ export default function () {
     <View className="relative">
       <View className="absolute h-64 w-full bg-primary" />
       <View>
-        <ScrollView className="px-4" pinchGestureEnabled={false}>
+        <ScrollView className="h-full px-4">
           <View className="flex flex-col gap-1 py-4" style={{ marginTop: Constants.statusBarHeight }}>
-            <Text className="text-4xl font-semibold text-invert">👋 Chào mừng {user?.name}</Text>
+            <Text className="text-3xl font-semibold text-invert">👋 Chào mừng {user?.name}</Text>
             <Text className="pl-11 text-xl font-medium text-invert">Hãy đọc sách mỗi ngày nhé !</Text>
           </View>
 

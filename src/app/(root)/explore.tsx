@@ -61,8 +61,6 @@ export default function () {
     staleTime: 5000,
   })
 
-  console.log(data?.data.length, data?.count)
-
   if (!categories?.length) return
 
   return (
