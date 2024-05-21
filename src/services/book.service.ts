@@ -17,6 +17,14 @@ export class BookService {
     })
   }
 
+  continous() {
+    return api.request<Book[]>({
+      method: "GET",
+      url: "/book/continous",
+      headers: { Authorization: true },
+    })
+  }
+
   get(id: string) {
     return api.request<Book>({
       method: "GET",
