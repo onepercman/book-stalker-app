@@ -1,4 +1,5 @@
 import { Loader } from "@/components/loader"
+import { NotiSentry } from "@/components/noti-sentry"
 import { ToastProvider } from "@/components/ui/toast"
 import { queryClient } from "@/libs/react-query"
 import { useStore } from "@/libs/valtio"
@@ -16,7 +17,7 @@ LogBox.ignoreAllLogs()
 moment.locale("vi")
 
 export default function () {
-  const { user, jwt } = useStore(userStore)
+  const { jwt } = useStore(userStore)
 
   const router = useRouter()
 
@@ -32,6 +33,7 @@ export default function () {
     <ReaderProvider>
       <QueryClientProvider client={queryClient}>
         <Loader />
+        <NotiSentry />
         <ToastProvider position="top">
           <Stack screenOptions={{ gestureEnabled: false }}>
             <Stack.Screen name="index" options={{ headerShown: false }} />

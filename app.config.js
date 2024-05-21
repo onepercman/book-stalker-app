@@ -68,6 +68,14 @@ module.exports = {
           photosPermission: "The app accesses your photos to let you share them with your friends.",
         },
       ],
+      [
+        "expo-notifications",
+        {
+          icon: "./public/favicon.png",
+          color: "#ffffff",
+          sounds: ["./public/noti.mp3"],
+        },
+      ],
     ],
 
     extra: {
