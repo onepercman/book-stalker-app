@@ -5,7 +5,7 @@ import TimePicker from "@react-native-community/datetimepicker"
 import moment from "moment"
 import { FC } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { FlatList, ScrollView, Text, View } from "react-native"
+import { FlatList, Text, View } from "react-native"
 import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 import { Input } from "../ui/input"
@@ -69,23 +69,21 @@ export const ScheduleList: FC = () => {
           </Button>
         </DialogContent>
       </Dialog>
-      <ScrollView>
-        <FlatList
-          className="h-full"
-          numColumns={3}
-          data={data}
-          keyExtractor={(e) => e._id}
-          renderItem={({ item }) => (
-            <View className="flex flex-row items-center justify-between gap-4">
-              <View className="flex flex-row items-center gap-4">
-                <Text>{item.title}</Text>
-                <Text>{moment(item.time).format("ll")}</Text>
-              </View>
-              <Button leftIcon={<Octicons name="trash" />} />
+      <FlatList
+        className="h-full"
+        numColumns={3}
+        data={data}
+        keyExtractor={(e) => e._id}
+        renderItem={({ item }) => (
+          <View className="flex flex-row items-center justify-between gap-4">
+            <View className="flex flex-row items-center gap-4">
+              <Text>{item.title}</Text>
+              <Text>{moment(item.time).format("ll")}</Text>
             </View>
-          )}
-        />
-      </ScrollView>
+            <Button leftIcon={<Octicons name="trash" />} />
+          </View>
+        )}
+      />
     </View>
   )
 }

@@ -21,8 +21,6 @@ export function NotiSentry() {
     await Notifications.cancelAllScheduledNotificationsAsync()
 
     schedules.forEach(function (schedule) {
-      console.log(moment(schedule.time).hours(), moment(schedule.time).minutes())
-
       Notifications.scheduleNotificationAsync({
         content: {
           title: "BookStalker 👋👋👋",
