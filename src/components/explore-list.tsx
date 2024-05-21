@@ -61,7 +61,7 @@ export const ExploreList: FC<{ category?: string; search?: string }> = ({ catego
         isFetching ? (
           <View></View>
         ) : (
-          <View className="flex flex-col items-center gap-3">
+          <View className="flex flex-col items-center gap-3 p-6">
             <Text className="m-auto text-center text-muted">
               <Octicons name="no-entry" size={16} />
             </Text>
