@@ -20,7 +20,7 @@ export const ScheduleList: FC = () => {
     },
   })
 
-  async function submit({ title, time }: Schedule) {
+  async function submit({ title, time }: Schedule, callback: () => void) {
     const { data, statusText } = await Service.schedule.create({ title, time })
     if (data) {
       refetch()
@@ -28,59 +28,87 @@ export const ScheduleList: FC = () => {
         title: "",
         time: Date.now(),
       })
+      callback()
     } else {
       form.setError("root", statusText as any)
     }
+  }
+
+  async function deleteSchedule(id: string) {
+    const { data } = await Service.schedule.delete(id)
+    if (data) refetch()
   }
 
   return (
     <View className="p-4">
       <Dialog>
         <DialogTrigger>
-          <Button leftIcon={<Octicons name="plus" />}>Add schedule</Button>
+          <Button variant="primary" leftIcon={<Octicons name="plus" />} className="mb-4">
+            Thêm lịch đọc
+          </Button>
         </DialogTrigger>
         <DialogContent className="flex w-full max-w-sm flex-col gap-2">
-          <Text className="text-xl font-semibold">Add new schedule</Text>
-          <View className="flex flex-row gap-2">
-            <Controller
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <Input value={field.value} onChangeText={field.onChange} placeholder="Title" className="grow" />
-              )}
-            />
-            <Controller
-              control={form.control}
-              name="time"
-              render={({ field }) => (
-                <TimePicker
-                  value={new Date(field.value)}
-                  onChange={function (e) {
-                    field.onChange(e.nativeEvent.timestamp)
-                  }}
-                  mode="time"
+          {({ setOpen }) => (
+            <>
+              <Text className="text-xl font-semibold">Thêm lịch đọc</Text>
+              <View className="flex flex-row gap-2">
+                <Controller
+                  control={form.control}
+                  name="time"
+                  render={({ field }) => (
+                    <TimePicker
+                      value={new Date(field.value)}
+                      onChange={function (e) {
+                        field.onChange(e.nativeEvent.timestamp)
+                      }}
+                      mode="time"
+                    />
+                  )}
                 />
-              )}
-            />
-          </View>
-          <Text className="text-error">{form.formState.errors.root?.message}</Text>
-          <Button variant="primary" onPress={form.handleSubmit(submit)}>
-            OK
-          </Button>
+                <Controller
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <Input
+                      value={field.value}
+                      onChangeText={field.onChange}
+                      placeholder="Tiêu đề (không bắt buộc)"
+                      maxLength={15}
+                      className="grow"
+                    />
+                  )}
+                />
+              </View>
+              <Text className="text-error">{form.formState.errors.root?.message}</Text>
+              <Button
+                variant="primary"
+                onPress={form.handleSubmit((values) =>
+                  submit(values, function () {
+                    setOpen(false)
+                  }),
+                )}
+              >
+                OK
+              </Button>
+            </>
+          )}
         </DialogContent>
       </Dialog>
       <FlatList
         className="h-full"
-        numColumns={3}
         data={data}
         keyExtractor={(e) => e._id}
         renderItem={({ item }) => (
-          <View className="flex flex-row items-center justify-between gap-4">
-            <View className="flex flex-row items-center gap-4">
-              <Text>{item.title}</Text>
-              <Text>{moment(item.time).format("ll")}</Text>
+          <View className="py-2">
+            <View className="flex flex-row items-center justify-between gap-4 rounded border border-primary p-2">
+              <View className="flex flex-row items-center gap-4">
+                <Text className="font-semibold text-primary-700">{moment(item.time).format("HH:mm")}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail">
+                  {item.title}
+                </Text>
+              </View>
+              <Button leftIcon={<Octicons name="trash" />} onPress={() => deleteSchedule(item._id)} />
             </View>
-            <Button leftIcon={<Octicons name="trash" />} />
           </View>
         )}
       />

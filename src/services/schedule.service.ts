@@ -17,4 +17,12 @@ export class ScheduleService {
       headers: { Authorization: true },
     })
   }
+
+  delete(id: string) {
+    return api.request<Schedule>({
+      method: "DELETE",
+      url: `/schedule/${id}`,
+      headers: { Authorization: true },
+    })
+  }
 }
