@@ -18,10 +18,8 @@ export const BookCard: FC<{ data: Book; className?: string }> = ({ data, classNa
           locations={[0, 0.8]}
           style={{
             height: 60,
-            marginBottom: -16,
             justifyContent: "flex-end",
-            paddingHorizontal: 4,
-            paddingVertical: 8,
+            padding: 4,
           }}
         >
           <Text className="line-clamp-2 text-center text-sm font-medium text-invert">{data.name}</Text>

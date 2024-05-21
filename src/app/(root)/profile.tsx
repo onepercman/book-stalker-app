@@ -2,6 +2,7 @@ import { BookCard } from "@/components/book-card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProfileAvatar } from "@/components/user/profile-avatar"
+import { ScheduleList } from "@/components/user/schedule-list"
 import { useLikedBooks } from "@/hooks/use-liked-books"
 import { useStore } from "@/libs/valtio"
 import { userStore } from "@/stores/user.store"
@@ -74,7 +75,9 @@ export default function () {
               />
             ) : null}
           </TabsContent>
-          <TabsContent value="2"></TabsContent>
+          <TabsContent value="2">
+            <ScheduleList />
+          </TabsContent>
         </Tabs>
       </View>
 

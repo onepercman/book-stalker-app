@@ -23,6 +23,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.3.4
     version: 3.4.2(react-hook-form@7.51.4)
+  '@react-native-community/datetimepicker':
+    specifier: ^8.0.1
+    version: 8.0.1(react-native@0.74.1)(react@18.2.0)
   '@react-native-picker/picker':
     specifier: 2.7.5
     version: 2.7.5(react-native@0.74.1)(react@18.2.0)
@@ -3240,6 +3243,21 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@react-native-community/datetimepicker@8.0.1(react-native@0.74.1)(react@18.2.0):
+    resolution: {integrity: sha512-4BO0t3geMNNw9cIIm9p9FNUzwMXexdzD4pAH0AaUAycs3BS71HLrX8jHbrI7nzq/+8O7cLAXn5Gudte+YpTV8Q==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+      react-native-windows: '*'
+    peerDependenciesMeta:
+      react-native-windows:
+        optional: true
+    dependencies:
+      invariant: 2.2.4
+      react: 18.2.0
+      react-native: 0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(@types/react@18.2.79)(react@18.2.0)
     dev: false
 
   /@react-native-picker/picker@2.7.5(react-native@0.74.1)(react@18.2.0):

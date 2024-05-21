@@ -9,7 +9,7 @@ import { Entypo } from "@expo/vector-icons"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import Constants from "expo-constants"
 import { useLocalSearchParams, useRouter } from "expo-router"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { ScrollView, Text, View } from "react-native"
 
 export default function () {
@@ -61,11 +61,7 @@ export default function () {
     staleTime: 5000,
   })
 
-  useEffect(() => {
-    let index = categories?.findIndex((e) => e._id === category) || 0
-    if (index === -1) index = 0
-    scrollViewRef.current?.scrollTo({ x: (index * 750) / (categories?.length || 1) })
-  }, [category])
+  console.log(data?.data.length, data?.count)
 
   if (!categories?.length) return
 
@@ -85,7 +81,7 @@ export default function () {
             inputClasses="pr-10"
             placeholder="Tìm kiếm sách..."
           />
-          <Text className="absolute right-8 top-7 text-muted">
+          <Text className="absolute right-8 top-[27px] text-muted">
             <Entypo size={20} name="magnifying-glass" />
           </Text>
         </View>
@@ -95,16 +91,9 @@ export default function () {
           onChange={(e) => router.replace(`/explore/?category=${e}`)}
         >
           <TabsList className="overflow-auto">
-            <ScrollView ref={scrollViewRef} horizontal>
+            <ScrollView ref={scrollViewRef} horizontal showsHorizontalScrollIndicator={false}>
               {categories.map((category, index) => (
-                <TabsTrigger
-                  key={index}
-                  title={category.name}
-                  value={category._id}
-                  onPressOut={function () {
-                    scrollViewRef.current?.scrollTo({ x: (index * 750) / categories.length })
-                  }}
-                />
+                <TabsTrigger key={index} title={category.name} value={category._id} className="py-4" />
               ))}
             </ScrollView>
           </TabsList>
