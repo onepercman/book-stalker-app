@@ -57,6 +57,7 @@ module.exports = {
       favicon: "./public/favicon-32x32.png",
     },
     plugins: [
+      ["expo-font"],
       ["expo-router"],
       ["expo-secure-store"],
       ["expo-document-picker"],
