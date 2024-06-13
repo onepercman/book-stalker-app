@@ -1,18 +1,22 @@
 import { BookCard } from "@/components/book-card"
 import { CategoryCard } from "@/components/category-card"
+import { Button } from "@/components/ui/button"
 import { useCategories } from "@/hooks/use-categories"
 import { useContinousBooks } from "@/hooks/use-continous-books"
 import { useLikedBooks } from "@/hooks/use-liked-books"
 import { useStore } from "@/libs/valtio"
 import { userStore } from "@/stores/user.store"
-import { Entypo } from "@expo/vector-icons"
+import { Entypo, Octicons } from "@expo/vector-icons"
 import Constants from "expo-constants"
+import { useRouter } from "expo-router"
 import { Dimensions, ScrollView, Text, View } from "react-native"
 import Carousel from "react-native-reanimated-carousel"
 
 const width = Dimensions.get("window").width
 
 export default function () {
+  const router = useRouter()
+
   const { user } = useStore(userStore)
 
   const { data: continousBooks } = useContinousBooks()
@@ -45,7 +49,21 @@ export default function () {
                 renderItem={({ item }) => <BookCard data={item} />}
               />
             </View>
-          ) : null}
+          ) : (
+            <View className="flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
+              <Text className="font-medium">
+                Có vẻ như bạn mới bắt đầu, hãy thử tìm kiếm cuốn sách yêu thích ngay nào ! 🫢
+              </Text>
+
+              <Button
+                variant="primary"
+                rightIcon={<Octicons name="light-bulb" />}
+                onPress={() => router.replace("/explore")}
+              >
+                Khám phá ngay
+              </Button>
+            </View>
+          )}
 
           {likedBooks ? (
             <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
@@ -61,7 +79,22 @@ export default function () {
                 renderItem={({ item }) => <BookCard data={item} />}
               />
             </View>
-          ) : null}
+          ) : (
+            <View className="flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
+              <Text>💡 Tip:</Text>
+              <Text className="font-medium">
+                Bạn có thể thêm sách vào danh sách yêu thích bằng cách bấm vào nút ♥️ khi đọc sách nhé
+              </Text>
+
+              <Button
+                variant="primary"
+                rightIcon={<Octicons name="search" />}
+                onPress={() => router.replace("/explore")}
+              >
+                Tìm kiếm sách
+              </Button>
+            </View>
+          )}
 
           <View className="my-4 rounded-2xl border border-line bg-background shadow-light shadow-gray-400/50">
             <Text className="p-4 text-xl font-semibold">
