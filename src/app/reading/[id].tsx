@@ -28,7 +28,7 @@ export default function () {
     },
   })
 
-  const { totalLocations, currentLocation, theme, changeTheme } = useReader()
+  const { totalLocations, currentLocation, section, theme, changeTheme, getCurrentLocation } = useReader()
   const { height } = useWindowDimensions()
   const insets = useSafeAreaInsets()
   const router = useRouter()
@@ -40,11 +40,16 @@ export default function () {
   }
 
   useEffect(() => {
-    trackerStore.track({
-      currentPage: currentLocation?.start.location,
-      totalPage: totalLocations,
-      lastVisit: Date.now(),
-    })
+    const pos = getCurrentLocation()
+
+    if (pos) {
+      trackerStore.track({
+        currentPage: pos.start.displayed.page,
+        currentCfi: pos.start.href,
+        totalPage: totalLocations,
+        lastVisit: Date.now(),
+      })
+    }
   }, [totalLocations, currentLocation])
 
   useEffect(() => {
@@ -85,7 +90,19 @@ export default function () {
         </View>
       </View>
 
-      <Reader src={data.uri} height={height * 0.8} fileSystem={useFileSystem} defaultTheme={Themes.DARK} />
+      <Reader
+        src={data.uri}
+        height={height * 0.8}
+        fileSystem={useFileSystem}
+        defaultTheme={Themes.DARK}
+        initialLocation={data.tracker?.currentCfi ?? undefined}
+        allowPopups
+      />
+      <View className="flex flex-row justify-center px-4">
+        <Button>
+          {currentLocation?.start.displayed.page}/{totalLocations}
+        </Button>
+      </View>
     </SafeAreaView>
   )
 }

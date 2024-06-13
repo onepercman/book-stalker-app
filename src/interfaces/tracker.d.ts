@@ -5,5 +5,6 @@ interface Tracker {
   bookId: string
   lastVisit: number
   currentPage: number
+  currentCfi: string
   totalPage: number
 }

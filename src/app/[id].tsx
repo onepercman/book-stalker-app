@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { useLikedBooks } from "@/hooks/use-liked-books"
 import { Service } from "@/services/app.service"
+import { formatNumber } from "@/utils/number"
 import { Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useRouter } from "expo-router"
+import moment from "moment"
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native"
 
 export default function () {
@@ -61,11 +63,19 @@ export default function () {
         <View className="flex h-full flex-col gap-2 p-4">
           <View className="flex flex-row justify-between gap-2">
             <Text className="text-muted">Last Read</Text>
-            <Text className="font-medium">2024/04/20</Text>
+            <Text className="font-medium">
+              {data.tracker?.lastVisit ? moment(data.tracker.lastVisit).format("lll") : "_"}
+            </Text>
           </View>
           <View className="flex flex-row justify-between gap-2">
             <Text className="text-muted">Reading Progress</Text>
-            <Text className="font-medium">11/120 (9%)</Text>
+            <Text className="font-medium">
+              {data.tracker?.currentPage ?? 0}/{data.tracker?.totalPage ?? 0} (
+              {data.tracker?.currentPage && data.tracker?.totalPage
+                ? formatNumber((data.tracker.currentPage * 100) / data.tracker.totalPage, 0)
+                : "0"}
+              %)
+            </Text>
           </View>
         </View>
       </ScrollView>
