@@ -17,10 +17,6 @@ export default function () {
 
   const form = useForm<LoginDto>({
     mode: "all",
-    defaultValues: {
-      email: "onepercman@gmail.com",
-      password: "123456",
-    },
   })
 
   async function submit({ email, password }: LoginDto) {

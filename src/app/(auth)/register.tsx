@@ -17,11 +17,6 @@ export default function () {
 
   const form = useForm<LoginDto>({
     mode: "all",
-    defaultValues: {
-      email: "onepercman@gmail.com",
-      password: "123456",
-      rePassword: "123456",
-    },
   })
 
   async function submit({ email, password }: LoginDto) {
@@ -83,7 +78,14 @@ export default function () {
           <Controller
             control={form.control}
             name="rePassword"
-            rules={{ required: "Hãy nhập mật khẩu xác nhận" }}
+            rules={{
+              required: "Hãy nhập mật khẩu xác nhận",
+              validate: {
+                check(rePass, { password }) {
+                  return rePass === password || "Mật khẩu xác nhận chưa chính xác"
+                },
+              },
+            }}
             render={({ field, fieldState }) => (
               <Input
                 value={field.value}
