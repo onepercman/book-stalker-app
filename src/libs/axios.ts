@@ -16,13 +16,13 @@ const responseHandler = {
     return Promise.resolve(response)
   },
   onRejected(error: AxiosError) {
-    console.log("🔴", error.config?.baseURL || "" + error.config?.url)
-    if (error.response?.data) {
-      const message = (error.response.data as any)["message"]
+    if (error.response) {
+      const message = (error.response.data as any)?.message || "Lỗi kết nối với máy chủ"
       error.response.statusText = message
       error.response.data = null
       return Promise.resolve(error.response)
     }
+
     return Promise.resolve(null)
   },
 }
