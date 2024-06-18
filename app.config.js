@@ -1,6 +1,6 @@
 module.exports = {
   expo: {
-    name: "bookstalker.app - book-stalker",
+    name: "Bookstalker",
     experiments: {
       typedRoutes: true,
       tsconfigPaths: true,
@@ -23,7 +23,7 @@ module.exports = {
     assetBundlePatterns: ["**/*"],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.your.bundle.identifier",
+      bundleIdentifier: "com.onepercman.bookstalker",
       config: {
         usesNonExemptEncryption: false,
       },
@@ -32,7 +32,7 @@ module.exports = {
       ITSAppUsesNonExemptEncryption: false,
     },
     android: {
-      package: "com.your.bundle.identifier",
+      package: "com.onepercman.bookstalker",
       adaptiveIcon: {
         foregroundImage: "./public/android-chrome-192x192.png",
         backgroundColor: "#ffffff",
@@ -77,10 +77,14 @@ module.exports = {
         },
       ],
     ],
-
+    build: {
+      preview: {
+        distribution: "internal",
+      },
+    },
     extra: {
       eas: {
-        projectId: "1f0c1dbf-8c00-449d-9e8f-4b87d2fd5f44",
+        projectId: "71b37749-f8d6-4b41-ac2c-a13d3b233638",
       },
     },
   },
