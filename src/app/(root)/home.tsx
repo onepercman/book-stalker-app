@@ -50,7 +50,7 @@ export default function () {
               />
             </View>
           ) : (
-            <View className="flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
+            <View className="my-4 flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
               <Text className="font-medium">
                 Có vẻ như bạn mới bắt đầu, hãy thử tìm kiếm cuốn sách yêu thích ngay nào ! 🫢
               </Text>
@@ -80,7 +80,7 @@ export default function () {
               />
             </View>
           ) : (
-            <View className="flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
+            <View className="my-4 flex w-full flex-col gap-4 rounded-2xl bg-background p-4 shadow-light shadow-gray-400/50">
               <Text>💡 Tip:</Text>
               <Text className="font-medium">
                 Bạn có thể thêm sách vào danh sách yêu thích bằng cách bấm vào nút ♥️ khi đọc sách nhé

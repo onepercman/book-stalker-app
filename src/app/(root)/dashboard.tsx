@@ -3,9 +3,8 @@ import { FontAwesome, Octicons } from "@expo/vector-icons"
 import Constants from "expo-constants"
 import { useMemo } from "react"
 import { Dimensions, ScrollView, Text, View } from "react-native"
-import { LineChart } from "react-native-chart-kit"
+import { BarChart } from "react-native-gifted-charts"
 import Carousel from "react-native-reanimated-carousel"
-import colors from "tailwindcss/colors"
 
 export default function () {
   const width = Dimensions.get("window").width
@@ -101,46 +100,34 @@ export default function () {
                 const data = [day, week, month][index]
                 if (!data) return <View></View>
                 return (
-                  <LineChart
-                    data={{
-                      labels: data.map((item) => item.time),
-                      datasets: [
-                        {
-                          data: data.map((el) => el.value),
-                        },
-                      ],
-                    }}
-                    width={Dimensions.get("window").width - 32}
-                    height={230}
-                    withDots={false}
-                    yAxisInterval={1}
-                    formatYLabel={function (e) {
-                      if (+e >= 60 * 60) {
-                        return Math.ceil(+e / 60 / 60) + "h"
-                      }
-                      if (+e >= 60) {
-                        return Math.ceil(+e / 60) + "p" + Math.ceil(+e % 60) + "s"
-                      }
-
-                      return Math.ceil(+e) + "s"
-                    }}
-                    chartConfig={{
-                      strokeWidth: 4,
-                      backgroundColor: colors.blue[500],
-                      backgroundGradientFrom: colors.blue[500],
-                      backgroundGradientTo: colors.blue[300],
-                      decimalPlaces: 2,
-                      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                      formatYLabel(v) {
-                        return "HEHE" + v
-                      },
-                    }}
-                    bezier
-                    style={{
-                      borderRadius: 8,
-                    }}
-                  />
+                  <View>
+                    <Text className="mb-4 text-center text-xl font-medium text-primary">
+                      {index === 0 ? "Biểu đồ ngày" : index === 1 ? "Biểu đồ tuần" : "Biểu đồ tháng"}
+                    </Text>
+                    <BarChart
+                      width={Dimensions.get("window").width - 32}
+                      data={data.map((el) => ({
+                        value: el.value,
+                        label: el.time,
+                      }))}
+                      formatYLabel={function (e) {
+                        if (+e >= 60 * 60) {
+                          return Math.ceil(+e / 60 / 60) + "h"
+                        }
+                        if (+e >= 60) {
+                          return Math.ceil(+e / 60) + "p" + Math.ceil(+e % 60) + "s"
+                        }
+                        return Math.ceil(+e) + "s"
+                      }}
+                      barWidth={22}
+                      barBorderRadius={4}
+                      frontColor="lightblue"
+                      yAxisThickness={0}
+                      xAxisThickness={0}
+                      initialSpacing={0}
+                      adjustToWidth
+                    />
+                  </View>
                 )
               }}
             />

@@ -22,7 +22,6 @@ const responseHandler = {
       error.response.data = null
       return Promise.resolve(error.response)
     }
-
     return Promise.resolve(null)
   },
 }

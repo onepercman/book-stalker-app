@@ -78,7 +78,13 @@ module.exports = {
       ],
     ],
     build: {
+      development: {
+        distribution: "internal",
+      },
       preview: {
+        distribution: "internal",
+      },
+      production: {
         distribution: "internal",
       },
     },
