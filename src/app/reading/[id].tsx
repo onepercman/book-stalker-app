@@ -9,7 +9,7 @@ import { Entypo } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { useEffect } from "react"
-import { SafeAreaView, TouchableOpacity, View, useWindowDimensions } from "react-native"
+import { ActivityIndicator, SafeAreaView, TouchableOpacity, View, useWindowDimensions } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 const THEMES = Object.values(Themes)
@@ -58,7 +58,12 @@ export default function () {
     }
   }, [])
 
-  if (!data) return
+  if (!data)
+    return (
+      <View className="flex h-full">
+        <ActivityIndicator className="m-auto" />
+      </View>
+    )
 
   return (
     <SafeAreaView

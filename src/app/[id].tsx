@@ -6,7 +6,7 @@ import { Octicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import moment from "moment"
-import { Image, SafeAreaView, ScrollView, Text, View } from "react-native"
+import { ActivityIndicator, Image, SafeAreaView, ScrollView, Text, View } from "react-native"
 
 export default function () {
   const router = useRouter()
@@ -31,7 +31,12 @@ export default function () {
     }
   }
 
-  if (!data) return
+  if (!data)
+    return (
+      <View className="flex h-full">
+        <ActivityIndicator className="m-auto" />
+      </View>
+    )
 
   return (
     <SafeAreaView>
