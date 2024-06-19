@@ -2,7 +2,7 @@ import { useReadTime } from "@/hooks/use-read-time"
 import { FontAwesome, Octicons } from "@expo/vector-icons"
 import Constants from "expo-constants"
 import { useMemo } from "react"
-import { Dimensions, ScrollView, Text, View } from "react-native"
+import { ActivityIndicator, Dimensions, SafeAreaView, ScrollView, Text, View } from "react-native"
 import { BarChart } from "react-native-gifted-charts"
 import Carousel from "react-native-reanimated-carousel"
 
@@ -54,6 +54,13 @@ export default function () {
     },
     [month],
   )
+
+  if (!day || !week || !month)
+    return (
+      <SafeAreaView className="flex h-full">
+        <ActivityIndicator className="m-auto" />
+      </SafeAreaView>
+    )
 
   return (
     <View>
